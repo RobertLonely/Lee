@@ -1,3 +1,2 @@
 # Lee
-Beginners
-hello
+Silently, silently, progress
