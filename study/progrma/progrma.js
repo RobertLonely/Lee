@@ -2,7 +2,7 @@
 * @Author: 26291
 * @Date:   2019-03-12 21:02:32
 * @Last Modified by:   Lee
-* @Last Modified time: 2019-04-12 09:59:19
+* @Last Modified time: 2019-04-19 14:29:39
 */
 document.writeln('Hello,World!');
 // var egname={
@@ -57,7 +57,8 @@ Function.prototype.method=function (name,func){
 // 	var results=[];
 // 	walk_the_DOM(document.body,function(node){
 // 		var actual=node.nodeType===1&& node.getAttribute(att);
-// 		if(typeof actual ==='string'&&(actual===value || typeof value !=='string')){
+// 		if(typeof actual ==='string'
+// 		&&(actual===value || typeof value !=='string')){
 // 			results.push(node);
 // 		}
 // 	});
@@ -323,14 +324,16 @@ Function.prototype.method=function (name,func){
 // myMatrix=Array.identity(4);
 // document.writeln(myMatrix[3][3]);
 
-// var parse_url=/^(?:([A_Za_z]+):)?(\/{0,3})([0-9.\-A-Za-z]+)(?::(\d+))?(?:\/([^?#]*))?(?:\?([^#]*))?(?:#(.*))?$/;
+// var parse_url=/^(?:([A_Za_z]+):)?(\/{0,3})([0-9.\-A-Za-z]+)
+// (?::(\d+))?(?:\/([^?#]*))?(?:\?([^#]*))?(?:#(.*))?$/;
 // var url="http://www.ora.com:80/goodparts？q#fragment";
 // var result=parse_url.exec(url);
 // var names=['url','scheme','slash','host','port','path','query','hash'];
 // var blanks='          ';
 // var i;
 // for(i=0;i<names.length;i+=1){
-// 	document.writeln(names[i]+':'+blanks.substring(names[i].length),result[i]);
+// 	document.writeln(names[i]+':'+
+// 	blanks.substring(names[i].length),result[i]);
 // }
 
 // var parse_number=/^-?\d+(?:\.\d*)?(?:e[+\-]?\d+)?$/i;
@@ -436,7 +439,8 @@ Function.prototype.method=function (name,func){
 // 	};
 // }());
 // alert("<&>".entityify());
-// var text='<html><body bgcolor=linen><p>'+'This is <b>bold<\/b>!<\/p><\/body><\/html>';
+// var text='<html><body bgcolor=linen><p>'+
+// 'This is <b>bold<\/b>!<\/p><\/body><\/html>';
 // var tags=/[^<>]+|<(\/?)([A-Za-z]+)([^<>]*)>/g;
 // var a,i;
 // a=text.match(tags);
@@ -573,32 +577,125 @@ Function.prototype.method=function (name,func){
 // console.log(type);
 // console.log(name);
 
-window.onload=function(){
-	var fileInput=document.getElementById('test-image-file'),
-	    info=document.getElementById('test-file-info'),
-	    preview=document.getElementById('test-image-preview');
+// window.onload=function(){
+// //window.onload = function(){ }是在页面中所有内容加载完成后才执行
+// 	var fileInput=document.getElementById('test-image-file'),
+// 	    info=document.getElementById('test-file-info'),
+// 	    preview=document.getElementById('test-image-preview');
 
-	    fileInput.addEventListener('change',function(){
-	    	console.log('change...');
-	    	preview.style.backgroundImage='';
-	    	if(!fileInput.value){
-	    		info.innerHTML='没有选择文件';
-	    		return;
-	    	}
-	    	var file=fileInput.files[0];
-	    	info.innerHTML='文件:'+file.name+'<br>'+'大小:'+file.size+'<br>'+'修改:'+file.lastModifiedDate;
-	    	if(file.type !== 'image/jpeg' && file.type !== 'image/png' && file.type !=='image/gif'){
-	    		alert('不是有效的图片文件！');
-	    		return;
-	    	}
+// 	    fileInput.addEventListener('change',function(){
+// 	    	console.log('change...');//显示执行顺序1
+// 	    	// preview.style.backgroundImage = 'url("../images/bg.jpg")';
+// 	    	if(!fileInput.value){
+// 	    		info.innerHTML='没有选择文件';
+// 	    		return;
+// 	    	}
+// 	    	var file=fileInput.files[0];
+// 	    	info.innerHTML='文件:'+file.name+'<br>'+
+// 	    	               '大小:'+file.size+'<br>'+
+// 	    	               '修改:'+file.lastModifiedDate;
+// 	    	if(file.type !== 'image/jpeg' && file.type !== 'image/png' &&
+// 	    	 file.type !=='image/gif' && file.type !=='image/jpg'){
+// 	    		alert('不是有效的图片文件！');
+// 	    		return;
+// 	    	}
 
-	    	var reader=new FileReader();
-	    	reader.onload=function(e){
-	    		console.log('reader.onload');
-	    		var data=e.target.result;
-	    		preview.style.backgroundImage='url('+data+')';
-	    	};
-	    	reader.readAsDataURL(file);
-	    });
+// 	    	var reader=new FileReader();
+// 	    	reader.onload=function(e){
+// 	    		console.log('reader.onload');//显示执行顺序3
+// 	    		var data=e.target.result;
+// 	    		preview.style.backgroundImage='url('+data+')';
+// 	    	};
+// 	    	console.log('wait onload');//显示执行顺序2
+// 	    	reader.readAsDataURL(file);
+// 	    });
 
-};
+// };
+
+// function success(text){
+// 	var textarea=document.getElementById('test-response-text');
+// 	textarea.value=text;
+// }
+// function fail(code){
+// 	var textarea=document.getElementById('test-response-text');
+// 	textarea.value='Error code:'+code;
+// }
+// var request;
+// if(window.XMLHttpRequest){
+// 	requset = new XMLHttpRequest();
+// }else{
+// 	requset = new ActiveObject('Microsoft.XMLHTTP');
+// }
+// requset.onreadystatechange = function(){//状态发生变化时，函数被回调
+// 	if (requset.readyState === 4){//成功完成
+// 		//判断响应结果：
+// 		if (requset.status === 200){
+// 			//成功，通过responseText拿到响应的文本：
+// 			return success(requset.responseText);
+// 		}else{
+// 			//失败，根据响应码判断失败原因：
+// 			return fail(requset.status);
+// 		}
+// 	}else{
+// 		//HTTP请求还在继续...
+// 	}
+// }
+// //发送请求：
+// requset.open('GET','http://www.sina.com.cn');
+// requset.send();
+// alert('请求已发送，请等待响应...');
+
+function refreshPrice(data){
+	var p=document.getElementById("test-response-text");
+	p.innerHTML="当前价格："+
+	data['0000001'].name+':'+
+	data['0000001'].price+';'+
+	data['1399001'].name+':'+
+	data['1399001'].price;
+}
+function getPrice(){
+	var
+	   price=document.createElement('script'),
+	   head=document.getElementsByTagName("head")[0];
+	   price.src='http://api.money.126.net/data/feed/0000001,1399001?callback=refreshPrice';
+	   head.appendChild(price);
+}
+
+function getWeather(){
+	let
+	   url='https://www.apiopen.top/weatherApi?city=',
+	   city=document.getElementById('city'),
+	   newURL=url+city.value;
+	   console.log(newURL);//显示应用api的路径
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function(){
+    	if(xhr.readyState === 4){
+    		if(xhr.status === 200){
+    			return success(xhr.responseText);
+    		}else{
+    			alert('失败！');
+    		}
+    	}
+    }
+    xhr.open('GET',newURL);
+    xhr.send();
+}
+function success(data){
+	let
+	   weather = document.getElementById('weatherInfo');
+	   weatherInfo = JSON.parse(data);
+	   console.log(weatherInfo);//显示解析的JSON字符串
+	if(weatherInfo.code === 200){
+		weather.innerHTML = '查询成功' + '<br>' +
+		                    '当前城市：' +weatherInfo.data.city+ '<br>' +
+		                    '当前温度：' +weatherInfo.data.wendu+ '。C' + '<br>' +
+		                    '气温：' +weatherInfo.data.forecast[0].high+
+		                    weatherInfo.data.forecast[0].low+ '<br>' +
+		                    '天气：' +weatherInfo.data.forecast[0].type+ '<br>' +
+		                    '风向：' +weatherInfo.data.forecast[0].fengxiang+
+		                    weatherInfo.data.forecast[0].fengli+ '<br>'
+		                    '注意：' +weatherInfo.data.ganmao
+	}else{
+		weather.innerText = weatherInfo.msg;
+	}
+}
