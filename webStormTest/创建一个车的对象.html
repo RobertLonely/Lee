@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>创建一个车的对象</title>
+</head>
+<script>
+    /*调用系统的构建函数创建对象*/
+    var car = new Object();
+    car.weight = "1kg";
+    car.color = "black";
+    car.brand = "川888888888";
+    car.manned = function () {
+        console.log("前方到站泸州");
+    };
+    car.goods = function () {
+        console.log("限量1kg");
+    };
+    car.introduction = function () {
+        console.log("车身重：" + this.weight + "，外观为:" + this.color + "，车牌号为：" + this.brand);
+    };
+    car.introduction();
+
+    /************************自定义构造函数创建对象************************/
+    function Car(weight, color, brand) {
+        this.weight = weight;
+        this.color = color;
+        this.brand = brand;
+        this.manned = function () {
+            console.log("前方到站泸州");
+        };
+        this.goods = function () {
+            console.log("限量1kg");
+        };
+        this.introduction = function () {
+            console.log("车身重：" + this.weight + "，外观为:" + this.color + "，车牌号为：" + this.brand);
+        };
+    }
+
+    var car1 = new Car("1kg", "black", "川888888888");
+    car1.introduction();
+
+    /***********************************字面量创建对象******************************/
+    var car2 = {
+        weight: "1kg",
+        color: "black",
+        brand: "川888888888",
+        manned: function () {
+            console.log("前方到站泸州");
+        },
+        goods: function () {
+            console.log("限量1kg");
+        },
+        introduction: function () {
+            console.log("车身重：" + this.weight + "，外观为:" + this.color + "，车牌号为：" + this.brand);
+        },
+    };
+    car2.introduction();
+
+    /*************************工厂模式创建对象********************************/
+    function createObj(weight, color, brand) {
+        var obj = new Object();
+        obj.weight = weight;
+        obj.color = color;
+        obj.brand = brand;
+        obj.click = function () {
+            console.log("onclick");
+        };
+        obj.mouse = function () {
+            console.log("appear mouse");
+        };
+        obj.introduction = function () {
+            console.log("车身重：" + this.weight + "，外观为:" + this.color + "，车牌号为：" + this.brand);
+        };
+        return obj;
+    }
+
+    var car3 = createObj("1kg", "black", "川888888888");
+    car3.introduction();
+    /*创建一个车的对象，有重量，颜色，牌子，可以载人，拉货*/
+</script>
+<body>
+
+</body>
+</html>
