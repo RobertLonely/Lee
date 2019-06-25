@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>创建一个按钮对象</title>
+</head>
+<script>
+    /*********************调用系统构造函数创建对象************************/
+    var button = new Object();
+    button.width = "10px";
+    button.height = "5px";
+    button.bgColor = "black";
+    button.click = function () {
+        console.log("onclick");
+    };
+    button.mouse = function () {
+        console.log("appear mouse");
+    };
+    button.introduction = function () {
+        console.log("按钮的宽：" + this.width + ",高：" + this.height + ",背景颜色为：" + this.bgColor);
+    };
+    button.introduction();
+
+    /******************************自定义构造函数创建对象********************/
+    function Button(width, height, bgColor) {
+        this.width = width;
+        this.height = height;
+        this.bgColor = bgColor;
+        this.click = function () {
+            console.log("onclick");
+        };
+        this.mouse = function () {
+            console.log("appear mouse");
+        };
+        this.introduction = function () {
+            console.log("按钮的宽：" + this.width + ",高：" + this.height + ",背景颜色为：" + this.bgColor);
+        };
+    }
+
+    var button1 = new Button("10px", "5px", "black");
+    button1.introduction();
+
+    /****************************字面量创建对象**********************/
+    var button2 = {
+        width: "10px",
+        height: "5px",
+        bgColor: "black",
+        click: function () {
+            console.log("onclick");
+        },
+        mouse: function () {
+            console.log("appear mouse");
+        },
+        introduction: function () {
+            console.log("按钮的宽：" + this.width + ",高：" + this.height + ",背景颜色为：" + this.bgColor);
+
+        }
+    };
+    button2.introduction();
+
+    /***************************工厂模式创建对象*******************************/
+    function createObj(width, height, bgColor) {
+        var obj = new Object();
+        obj.width = width;
+        obj.height = height;
+        obj.bgColor = bgColor;
+        obj.click = function () {
+            console.log("onclick");
+        };
+        obj.mouse = function () {
+            console.log("appear mouse");
+        };
+        obj.introduction = function () {
+            console.log("按钮的宽：" + this.width + ",高：" + this.height + ",背景颜色为：" + this.bgColor);
+        }
+        return obj;
+    }
+
+    var button3 = createObj("10px", "5px", "black");
+    button3.introduction();
+
+    // 创建一个按钮对象,宽,高,背景颜色,点击行为,按钮有鼠标进入的行为。
+</script>
+<body>
+
+</body>
+</html>
