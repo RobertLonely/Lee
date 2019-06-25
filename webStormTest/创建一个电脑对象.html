@@ -4,6 +4,108 @@
     <meta charset="UTF-8">
     <title>创建一个电脑对象</title>
 </head>
+<script>
+    /**********************调用系统构造函数创建对象*******************/
+    var computer = new Object();
+    computer.color = "black";
+    computer.weight = "1kg";
+    computer.brand = "华硕";
+    computer.model = "AK47";
+    computer.movie = function () {
+        console.log("watch movie");
+    };
+    computer.listen = function () {
+        console.log("listen to music");
+    };
+    computer.playGame = function () {
+        console.log("paly game");
+    };
+    computer.playCode = function () {
+        console.log("play code");
+    };
+    computer.introduction = function () {
+        console.log("颜色:" + this.color + ",重量:" + this.weight + ",品牌:" + this.brand + ",型号:" + this.model);
+    };
+    computer.introduction();
+
+    /**********************自定义构造函数创建对象**********************/
+    function Computer(color, weight, brand, model) {
+        this.color = color;
+        this.weight = weight;
+        this.brand = brand;
+        this.model = model;
+        this.movie = function () {
+            console.log("watch movie");
+        };
+        this.listen = function () {
+            console.log("listen to music");
+        };
+        this.playGame = function () {
+            console.log("play game");
+        };
+        this.playCode = function () {
+            console.log("paly code");
+        };
+        this.introduction = function () {
+            console.log("颜色:" + this.color + ",重量:" + this.weight + ",品牌:" + this.brand + ",型号:" + this.model);
+        };
+
+    }
+
+    var computer1 = new Computer("black", "1kg", "华硕", "AK47");
+    computer1.introduction();
+
+    /******************字面量创建对象*****************************/
+    var computer2 = {
+        color: "black",
+        weight: "1kg",
+        brand: "华硕",
+        model: "AK47",
+        movie: function () {
+            console.log("watch movie");
+        },
+        listen: function () {
+            console.log("listen to music");
+        },
+        playGame: function () {
+            console.log("play game");
+        },
+        playCode: function () {
+            console.log("paly code");
+        },
+        introduction: function () {
+            console.log("颜色:" + this.color + ",重量:" + this.weight + ",品牌:" + this.brand + ",型号:" + this.model);
+        }
+    };
+    computer2.introduction();
+
+    /***********************工厂模式创建对象********************************/
+    function createObject(color,weight,brand,model){
+        var obj=new Object();
+        obj.color=color;
+        obj.weight=weight;
+        obj.brand=brand;
+        obj.model=model;
+        obj.movie=function (){
+            console.log("watch movie");
+        };
+        obj.listen=function (){
+            console.log("listen to music");
+        };
+        obj.playGame=function (){
+            console.log("paly game");
+        };
+        obj.palyCode=function (){
+            console.log("paly code");
+        };
+        obj.introduction=function (){
+            console.log("颜色:"+this.color+",重量:"+this.weight+",品牌:"+this.brand+",型号:"+this.model);
+        };
+        return obj;
+    }
+    var computer3=createObject("black","1kg","华硕","AK47");
+    computer3.introduction();
+</script>
 
 <body>
 
