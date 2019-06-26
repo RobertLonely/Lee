@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>随机产生十六进制颜色值</title>
+</head>
+<script>
+    function getColor() {
+        // 一个十六进制的值的数组
+        var arr = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"];
+        var result = "#";
+        for (var i = 0; i < 6; i++) {
+            // 产生的每个随机数都是一个索引，根据索引找到数组中对应的值，拼接到一起
+            var num = parseInt(Math.random() * 16);
+            result += arr[num];
+        }
+        return result;
+    }
+
+    console.log(getColor());
+
+
+</script>
+<body>
+
+</body>
+</html>
