@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>找到字符串中每个字符出现了多少次</title>
+</head>
+<script>
+    
+    var str = "What are you doing";
+    //第一步将所有字母全部变为小写
+    str = str.toLowerCase();
+    //第二步创建一个空对象，目的：把字母作为键，次数作为值
+    var obj = {};
+    //第三步遍历字符串，获取每个字母
+    for (var i = 0; i < str.length; i++) {
+        //字符串中的每个字符
+        var key = str[i];
+        //判断obj中是否有这个字母(属性)，没有就添加，有就加1
+        if (obj[key]) {//键值对写法---访问属性的另一种形式
+            //对象中有这个字母(属性)，那就把字母(属性)出现次数加一
+            obj[key]++;
+        } else {
+            //对象中没有这个字母(属性)，那就把字母(属性)加到对象中，并且给这个字母一个出现的次数，默认一次
+            obj[key] = 1;
+        }
+    }
+    //遍历对象，显示每个字母次数
+    for (var k in obj) {
+        console.log(k + ":" + obj[k]);
+    }
+</script>
+<body>
+
+</body>
+</html>
