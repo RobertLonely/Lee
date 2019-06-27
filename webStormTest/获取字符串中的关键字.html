@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>获取字符串中的关键字</title>
+</head>
+<script>
+    var str = "巴啦啦能量，小魔仙全身变";
+    var key = prompt("请输入关键字");
+    //先获取要截取的字符串的索引的位置
+    var index = str.indexOf(key);
+    //从指定位置开始截取，截取两个字符
+    str = str.substr(index, key.length);
+    console.log(str);
+</script>
+<body>
+
+</body>
+</html>
