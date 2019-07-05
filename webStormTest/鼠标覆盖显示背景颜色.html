@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>鼠标移进移出显示列表背景颜色</title>
+    <style>
+        ul {
+            margin: 100px auto;
+            padding: 0;
+            list-style: none;
+            width: 200px;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li>哈哈哈</li>
+    <li>啊啊啊</li>
+    <li>啊啊啊</li>
+    <li>小行星</li>
+    <li>踩踩踩</li>
+    <li>踩踩踩</li>
+    <li>版本本</li>
+    <li>版本本</li>
+</ul>
+<script>
+    var liObjs = document.getElementsByTagName("li");
+    for (var i = 0; i < liObjs.length; i++) {
+        liObjs[i].onmouseover = function () {
+            this.style.backgroundColor = "pink";
+        };
+        liObjs[i].onmouseout = function () {
+            this.style.backgroundColor = "white";
+        };
+    }
+</script>
+
+</body>
+</html>
