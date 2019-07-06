@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>全选与全不选</title>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th><input type="checkbox" id="all"></th>
+        <th>菜名</th>
+    </tr>
+    </thead>
+    <tbody id="alones">
+    <tr>
+        <td><input type="checkbox"></td>
+        <td>红烧肉</td>
+    </tr>
+    <tr>
+        <td><input type="checkbox"></td>
+        <td>瓦香鸡</td>
+    </tr>
+    </tbody>
+</table>
+<script>
+    function my$(id) {
+        return document.getElementById(id);
+    }
+
+    //获取全选的这个复选框
+    var all = my$("all");
+    //获取所有的小复选框
+    var alones = my$("alones").getElementsByTagName("input");
+    //点击全选的这个复选框，获取它当前的状态，然后设置所有小复选框的状态
+    all.onclick = function () {
+        for (var i = 0; i < alones.length; i++) {
+            alones[i].checked = all.checked;
+        }
+    };
+
+    for (var j = 0; j < alones.length; j++) {
+        //获取所有小复选框，分别注册点击事件
+        alones[j].onclick = function () {
+            //默认都被选中了
+            var flag = true;
+            //判断是否所有的小复选框都被选中
+            for (var k = 0; k < alones.length; k++) {
+                if (!alones[k].checked) {
+                    //没选中就进来，都选中就不进来
+                    flag = false;
+                    break;
+                }
+            }
+            //最后变量flag中的值就是全选框的值
+            all.checked = flag;
+        };
+    }
+
+
+</script>
+</body>
+</html>
