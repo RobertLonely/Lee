@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tab切换案例</title>
+    <style>
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .box {
+            width: 498px;
+            height: 300px;
+            margin: 20px auto;
+            position: relative;
+        }
+
+        .box-hd span {
+            width: 90px;
+            height: 50px;
+            display: inline-block;
+            float: left;
+            cursor: pointer;
+        }
+
+        .box-hd span:nth-child(2n) {
+            margin: 0 12px;
+        }
+
+        .box-bd ul li {
+            width: 498px;
+            height: 250px;
+            background-color: green;
+            bottom: 0;
+            left: 0;
+            position: absolute;
+        }
+
+        .priorty {
+            z-index: 999;
+        }
+
+        .current {
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <div class="box-hd">
+        <span class="current">1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+        <span>5</span>
+    </div>
+    <div class="box-bd">
+        <ul>
+            <li class="priorty">我是1</li>
+            <li>我是2</li>
+            <li>我是3</li>
+            <li>我是4</li>
+            <li>我是5</li>
+        </ul>
+    </div>
+</div>
+<script>
+    //获取所有的span标签
+    var spans = document.getElementsByTagName("span");
+    //获取所有的li标签
+    var lists = document.getElementsByTagName("li");
+    //循环遍历的方式,添加点击事件
+    for (var i = 0; i < spans.length; i++) {
+        //在点击之前就把索引保存到span标签中
+        spans[i].setAttribute("index", i);
+        spans[i].onclick = function () {
+            //第一件事，所有span的类样式全部移除
+            for (var k = 0; k < spans.length; k++) {
+                spans[k].removeAttribute("class");
+            }
+            //第二件事，当前被点击的span应用类样式
+            this.className = "current";
+            //span被点击的时候获取存储的索引值
+            var num = this.getAttribute("index");
+            //清除所有li标签的class属性
+            for (var j = 0; j < lists.length; j++) {
+                lists[j].removeAttribute("class");
+            }
+            //当前被点击的span对应的li标签显示
+            lists[num].className = "priorty";
+        };
+    }
+</script>
+</body>
+</html>
