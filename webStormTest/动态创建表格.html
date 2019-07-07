@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>利用createElement方法创建表格</title>
+    <style>
+        div {
+            width: 300px;
+            height: 300px;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+<input type="button" value="创建一个表格" id="btn"/>
+<div id="d"></div>
+<script>
+    function my$(id) {
+        return document.getElementById(id);
+    }
+
+    var names = [
+        ["网站", "网址", "访问量"],
+        ["百度", "<a href=\"http://www.baidu.com\">百度</a>\n", "0"],
+        ["搜狗", "<a href=\"http://www.sogou.com\">搜狗</a>\n", "10000"]
+    ];
+    my$("btn").onclick = function () {
+        //创建table,把table立刻加入到父级元素div中
+        var tObj = document.createElement("table");
+        tObj.border = "1";
+        tObj.cellSpacing = "0";
+        my$("d").appendChild(tObj);
+        //动态的创建tr，加到table中
+        for (var i = 0; i < names.length; i++) {
+            var trObj = document.createElement("tr");
+            tObj.appendChild(trObj);
+            //动态创建每一行中的每一列，加到tr中
+            for (var j = 0; j < names.length; j++) {
+                //创建td，并添加内容
+                var tdObj = document.createElement("td");
+                tdObj.innerHTML = names[i][j];
+                trObj.appendChild(tdObj);
+            }
+            //为tr添加鼠标进入事件
+            trObj.onmouseover = mouseoverHandle;
+            //为tr添加鼠标离开事件
+            trObj.onmouseout = mouseoutHandle;
+        }
+    };
+
+    //此位置，按钮的点击事件外面
+    function mouseoverHandle() {
+        this.style.backgroundColor = "red";
+    }
+
+    function mouseoutHandle() {
+        this.style.backgroundColor = "";
+    }
+</script>
+</body>
+</html>
