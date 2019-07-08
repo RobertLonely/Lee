@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>模仿百度搜索框</title>
+    <style>
+        p {
+            margin: 0;
+            padding: 5px;
+            cursor: pointer;
+            color: #555a5f;
+        }
+
+        #box {
+            width: 552px;
+            margin: 2in auto;
+            box-shadow: 0 0 80px 10px pink;
+            position: relative;
+        }
+
+        #txt {
+            width: 500px;
+        }
+
+        .list {
+            width: 504px;
+            background: rgba(255, 255, 255, .4);
+            position: absolute;
+            left: 0;
+            top: 23px;
+        }
+
+    </style>
+</head>
+<div id="box">
+    <input type="text" id="txt" value=""/>
+    <input type="button" value="搜索" id="btn"/>
+</div>
+<body>
+
+<script>
+    function my$(id) {
+        return document.getElementById(id);
+    }
+
+    var keyWords = ["小红你好啊", "小明晚上吃什么", "小红周末去哪儿？",
+        "传说在很久很久以前", "传家宝的意义", "苹果好吃", "苹果好贵"];
+    //获取文本框，注册键盘抬起事件
+    my$("txt").onkeyup = function () {
+        //每一次的键盘抬起都判断页面中有没有这个div
+        if (my$("list")) {
+            my$("box").removeChild(my$("list"));
+        }
+        //获取文本框输入内容
+        var text = this.value;
+        //临时数组，存放对应上的数据
+        var result = [];
+        //把文本框输入的内容和关键字数组中的每个数据进行对比
+        for (var i = 0; i < keyWords.length; i++) {
+            //是否是最开始出现的
+            if (keyWords[i].indexOf(text) === 0) {
+                result.push(keyWords[i]);
+            }
+        }
+
+        //如果文本框的空的或者临时数组是空的，就不用创建div
+        if (this.value.length === 0 || result.length === 0) {
+            //如果页面中有这个div，删除这个div
+            if (my$("list")) {
+                my$("box").removeChild(my$("list"));
+            }
+            //避免总是会创建一个Div的现象
+            return;
+        }
+
+        //遍历临时数组，创建div,把div加入页面
+        var dObj = document.createElement("div");
+        my$("box").appendChild(dObj);
+        dObj.className = "list";
+        dObj.id = "list";
+
+        //遍历临时数组，创建d对应p标签
+        for (var j = 0; j < result.length; j++) {
+            var pObj = document.createElement("p");
+            pObj.innerHTML = result[j];
+            my$("list").appendChild(pObj);
+            pObj.onmouseover = bgcolor;
+            pObj.onmouseout = bgcolor;
+        }
+
+        function bgcolor(parm) {
+            switch (parm.type) {
+                case "mouseover":
+                    this.style.backgroundColor = "pink";
+                    break;
+                case "mouseout":
+                    this.style.backgroundColor = "";
+                    break;
+            }
+        }
+    };
+</script>
+</body>
+</html>
