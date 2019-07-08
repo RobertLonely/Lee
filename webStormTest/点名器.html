@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>点名器</title>
+    <style>
+        span {
+            border: 1px solid deeppink;
+            display: inline-block;
+            margin: 2px;
+            padding: 2px;
+
+        }
+
+        input {
+            position: absolute;
+            left: 50%;
+            width: 40px;
+            margin-left: -20px;
+            top: 120px;
+
+        }
+
+        div {
+            width: 185px;
+            height: 200px;
+            margin: 10px auto;
+            padding: 10px;
+            border: 1px solid black;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <span>小明</span>
+    <span>小红</span>
+    <span>小军</span>
+    <span>小刘</span>
+    <span>小王</span>
+    <span>小白</span>
+    <span>小黑</span>
+    <span>小蓝</span>
+    <span>小黄</span>
+    <span>小青</span>
+    <span>小蔡</span>
+    <span>小小</span>
+    <input type="button" value="开始" id="btn"/>
+</div>
+<script>
+    function my$(id) {
+        return document.getElementById(id);
+    }
+
+    var id;
+    var open = my$("btn");
+    open.onclick = function () {
+        var students = my$("box").getElementsByTagName("span");
+        //判断当前是否在点名
+        if (open.value === "开始") {
+            //不是，则开始点名，并让按钮值变为停止
+            led();
+
+            function led() {
+                //首先，将所有名字的背景颜色清空
+                for (var j = 0; j < students.length; j++) {
+                    students[j].style.backgroundColor = "";
+                }
+                //产生随机数组整数下标
+                var result = parseInt(Math.random() * students.length);
+                //被打印出的下标对应的名字背景颜色设置为红色
+                students[result].style.backgroundColor = "pink";
+                id = setTimeout(led, 100);
+            }
+
+            open.value = "停止";
+        } else {
+            //是在点名，则停止，并让按钮值显示开始
+            clearTimeout(id);
+            open.value = "开始";
+        }
+    };
+
+</script>
+</body>
+</html>
