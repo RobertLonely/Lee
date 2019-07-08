@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>同一元素绑定多个不同的事件，指向相同的事件处理函数</title>
+    <style>
+
+    </style>
+</head>
+<input type="button" value="按钮" id="btn"/>
+<body>
+
+<script>
+    function my$(id) {
+        return document.getElementById(id);
+    }
+
+    my$("btn").onclick = fn;
+    my$("btn").onmouseover = fn;
+    my$("btn").onmouseout = fn;
+
+    function fn(parm) {
+        switch (parm.type) {
+            case "click":
+                alert("hahaha");
+                break;
+            case "mouseover":
+                this.style.backgroundColor = "red";
+                break;
+            case "mouseout":
+                this.style.backgroundColor = "green";
+                break;
+        }
+    }
+</script>
+</body>
+</html>
