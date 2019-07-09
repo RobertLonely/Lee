@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>小星星</title>
+    <style>
+        .d2 {
+            width: 400px;
+            height: 400px;
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+
+<input type="button" value="开始" id="btn1"/>
+<input type="button" value="停止" id="btn2"/><br/>
+
+<div id="d2" class="d2">
+</div>
+
+<script>
+
+    function my$(id) {
+        return document.getElementById(id);
+    }
+
+    //用来存放定时器id;
+    var timeId2;
+    my$("btn1").onclick = function () {
+        //如果存在已触发的定时器，先停止，才能触发新的定时器
+        if (timeId2 !== "") {
+            clearInterval(timeId2);
+            //删除已经创建的span标签
+            my$("d2").removeChild(my$("d2").firstChild);
+        }
+
+        var x = document.createElement("span");
+        x.innerText = "★";
+        my$("d2").appendChild(x);
+        x.style.color = "white";
+        x.style.position = "relative";
+        timeId2 = setInterval(function () {
+            x.style.left = parseInt(Math.random() * 450) + "px";
+            x.style.top = parseInt(Math.random() * 450) + "px";
+            x.style.fontSize = parseInt(Math.random() * 100) + "px";
+        }, 100);
+    };
+
+    my$("btn2").onclick = function () {
+        clearInterval(timeId2);
+    }
+</script>
+</body>
+</html>
