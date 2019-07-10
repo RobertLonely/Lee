@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        ul, li {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        #box {
+            width: 450px;
+            position: relative;
+            margin: 50px auto;
+            border: 1px solid red;
+            padding: 2px;
+            overflow: hidden;
+        }
+
+        #inner {
+            width: 450px;
+            height: 300px;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        li {
+            float: left;
+        }
+
+        ul {
+            width: 1000%;
+            position: absolute;
+        }
+
+        #circle {
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%);
+            bottom: 20px;
+        }
+
+        #circle span {
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+            text-align: center;
+            background-color: white;
+            cursor: pointer;
+        }
+
+        #circle .current {
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <div id="inner">
+        <ul>
+            <li><a href="#"><img src="img/1.jpg" alt=""></a></li>
+            <li><a href="#"><img src="img/2.jpg" alt=""></a></li>
+            <li><a href="#"><img src="img/3.jpg" alt=""></a></li>
+        </ul>
+    </div>
+    <div id="circle">
+        <span class="current">1</span>
+        <span>2</span>
+        <span>3</span>
+    </div>
+
+</div>
+<script>
+    function my$(id) {
+        return document.getElementById(id);
+    }
+
+    //获取最外面的div
+    var box = my$("box");
+    //获取相框
+    var inner = box.children[0];
+    //获取相框的宽度
+    var imgWidth = inner.offsetWidth;
+    //获取ul
+    var ulObj = inner.children[0];
+    //获取所有的span标签
+    var spans = box.children[1].children;
+
+    //循环遍历所有的span标签,注册鼠标进入事件
+    for (var i = 0; i < spans.length; i++) {
+        //循环的时候把索引值保存在每个span的自定义属性中
+        spans[i].setAttribute("index", i);
+        //注册鼠标进入事件
+        spans[i].onmouseover = function () {
+            //首先清除所有的span的背景颜色
+            for (var j = 0; j < spans.length; j++) {
+                //移除每个span类样式
+                spans[j].removeAttribute("class");
+            }
+            //设置当前的span的背景颜色
+            this.className = "current";
+            //获取当前鼠标进入的span的索引
+            var index = this.getAttribute("index");
+            //移动ul
+            animate(ulObj, -index * imgWidth);
+        };
+    }
+
+    //设置任意的一个元素，移动到指定的目标位置
+    function animate(element, target) {
+        clearInterval(element.timeId);
+        //定时器的id值存储到对象的一个属性中
+        element.timeId = setInterval(function () {
+            //获取当前的位置，数字类型
+            var current = element.offsetLeft;
+            //每次移动的距离
+            var step = 10;
+            step = current < target ? step : -step;
+            //当前移动到的位置
+            current += step;
+            if (Math.abs(current - target) > Math.abs(step)) {
+                element.style.left = current + "px";
+            } else {
+                //清理定时器
+                clearInterval(element.timeId);
+                //直接到达目标
+                element.style.left = target + "px";
+            }
+        }, 20);
+    }
+
+</script>
+</body>
+</html>
