@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>完整的轮播图</title>
+    <style>
+        ul, ol, li {
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+        }
+
+        .all {
+            width: 450px;
+            height: 300px;
+            margin: 30px auto;
+            padding: 4px;
+            border: 1px solid #bfbfbf;
+            position: relative;
+        }
+
+        .screen {
+            width: 450px;
+            height: 300px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        ul li {
+            float: left;
+        }
+
+        ul {
+            width: 1000%;
+            overflow: hidden; /*清除浮动*/
+            position: absolute;
+        }
+
+        img {
+            vertical-align: top;
+        }
+
+        ol {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 20px;
+        }
+
+        ol li {
+            float: left;
+            width: 10px;
+            height: 10px;
+            text-align: center;
+            line-height: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 1px solid #e7e7e7;
+            margin: 0 2px;
+        }
+
+        ol .current {
+            background-color: #fff;
+            border: 1px solid #fff;
+        }
+
+        #arr {
+            width: 100%;
+            height: 40px;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 0;
+            display: none;
+        }
+
+        span {
+            width: 30px;
+            height: 40px;
+            color: white;
+            line-height: 40px;
+            font-size: 24px;
+            text-align: center;
+            background: rgba(0, 0, 0, .2);
+            position: absolute;
+            cursor: pointer;
+        }
+
+        #left {
+            left: 4px;
+        }
+
+        #right {
+            right: 4px;
+        }
+    </style>
+</head>
+<body>
+<div class="all" id="box">
+    <div class="screen">
+        <ul>
+            <li><a href=""><img src="img/1.jpg" alt=""></a></li>
+            <li><a href=""><img src="img/2.jpg" alt=""></a></li>
+            <li><a href=""><img src="img/3.jpg" alt=""></a></li>
+        </ul>
+        <ol></ol>
+    </div>
+    <div id="arr">
+        <span id="left">&lt;</span>
+        <span id="right">&gt;</span>
+    </div>
+</div>
+<script>
+    function my$(id) {
+        return document.getElementById(id);
+    }
+
+    //设置任意的一个元素，移动到指定的目标位置
+    function animate(element, target) {
+        clearInterval(element.timeId);
+        //定时器的id值存储到对象的一个属性中
+        element.timeId = setInterval(function () {
+            //获取当前的位置，数字类型
+            var current = element.offsetLeft;
+            //每次移动的距离
+            var step = 10;
+            step = current < target ? step : -step;
+            //当前移动到的位置
+            current += step;
+            if (Math.abs(current - target) > Math.abs(step)) {
+                element.style.left = current + "px";
+            } else {
+                //清理定时器
+                clearInterval(element.timeId);
+                //直接到达目标
+                element.style.left = target + "px";
+            }
+        }, 20);
+    }
+
+    //获取最外面的iv
+    var box = my$("box");
+    //获取相框
+    var screen = box.children[0];
+    //获取相框的宽度
+    var imgWidth = screen.offsetWidth;
+    //获取ul
+    var ulObj = screen.children[0];
+    //获取ul中的所有的li
+    var list = ulObj.children;
+    //获取ol
+    var olObj = screen.children[1];
+    //焦点的div
+    var arr = my$("arr");
+    //为了同步点击按钮时，图片的切换，声明为全局变量
+    var pic = 0;
+
+    //创建小按钮，根据li的个数
+    for (var i = 0; i < list.length; i++) {
+        //创建ol中的li标签，加入到ol中
+        var btn = document.createElement("li");
+        olObj.appendChild(btn);
+        //在ol的每个li标签上添加自定义属性，存取索引值
+        olObj.children[i].setAttribute("index", i);
+        //注册鼠标进入事件
+        olObj.children[i].onmouseover = function () {
+            //清除ol中所有li的背景
+            for (var j = 0; j < olObj.children.length; j++) {
+                olObj.children[j].removeAttribute("class");
+            }
+            //设置当前鼠标进来的li颜色
+            this.className = "current";
+            //获取鼠标进入的li的当前索引值
+            pic = this.getAttribute("index");
+            //移动ul
+            animate(ulObj, -pic * imgWidth);
+        };
+
+    }
+    //设置ol中第一个li有背景颜色
+    olObj.children[0].className = "current";
+    //克隆ul中第一个li,加到ul中的最后
+    ulObj.appendChild(ulObj.children[0].cloneNode(true));
+
+    //自动播放
+    var timeId = setInterval(clickHandle, 5000);
+    //鼠标进入box的div,显示左右焦点的div
+    box.onmouseover = function () {
+        arr.style.display = "block";
+        //鼠标进入废掉之前的定时器
+        clearInterval(timeId);
+    };
+    //鼠标离开box的div,隐藏左右焦点的div
+    box.onmouseout = function () {
+        arr.style.display = "none";
+        //鼠标出去，重新开始定时器
+        timeId = setInterval(clickHandle, 5000);
+    };
+
+    //右边按钮注册点击事件
+    my$("right").onclick = clickHandle;
+
+    function clickHandle() {
+        //清除ol中所有li的背景
+        for (var j = 0; j < olObj.children.length; j++) {
+            olObj.children[j].removeAttribute("class");
+        }
+        if (pic === list.length - 1) {
+            pic = 0;
+            ulObj.style.left = 0 + "px";
+        }
+        pic++;
+        animate(ulObj, -pic * imgWidth);
+        //如果pic等于3显示的是第四个图（内容是第一张图片），第一个小按钮有颜色
+        if (pic === list.length - 1) {
+            olObj.firstElementChild.className = "current"
+        } else {
+            olObj.children[pic].className = "current";
+        }
+    };
+
+    //左边按钮注册点击事件
+    my$("left").onclick = function () {
+
+        if (pic === 0) {
+            pic = 3;
+            ulObj.style.left = -(list.length - 1) * imgWidth + "px";
+        }
+        pic--;
+        animate(ulObj, -pic * imgWidth);
+        //清除ol中所有li的背景
+        for (var j = 0; j < olObj.children.length; j++) {
+            olObj.children[j].removeAttribute("class");
+        }
+        olObj.children[pic].className = "current";
+    };
+
+
+</script>
+</body>
+</html>
