@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>无缝连接的轮播图</title>
+    <style>
+        ul, li {
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+        }
+
+        .box {
+            width: 450px;
+            height: 300px;
+            margin: 50px auto;
+            border: 1px solid red;
+            position: relative;
+            overflow: hidden;
+
+        }
+
+        ul {
+            width: 1000%;
+            position: absolute;
+        }
+
+        li {
+            float: left;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="box" id="screen">
+    <ul>
+        <li><a href="#"><img src="img/1.jpg" alt=""></a></li>
+        <li><a href="#"><img src="img/2.jpg" alt=""></a></li>
+        <li><a href="#"><img src="img/3.jpg" alt=""></a></li>
+        <li><a href="#"><img src="img/1.jpg" alt=""></a></li>
+    </ul>
+</div>
+<script>
+    function my$(id) {
+        return document.getElementById(id);
+    }
+
+    var ulObj = my$("screen").children[0];
+    var current = 0;
+
+    var timeId = setInterval(function () {
+        current -= 10;
+        if (current < -1350) {
+            ulObj.style.left = "0";
+            current = 0;
+        } else {
+            ulObj.style.left = current + "px";
+        }
+    }, 20);
+
+    my$("screen").onmouseover = function () {
+        clearInterval(timeId);
+    };
+    my$("screen").onmouseout = function () {
+        if (timeId !== "") {
+            clearInterval(timeId);
+        }
+        timeId = setInterval(function () {
+            current -= 10;
+            if (current < -1350) {
+                ulObj.style.left = "0";
+                current = 0;
+            } else {
+                ulObj.style.left = current + "px";
+            }
+        }, 20);
+    };
+
+
+</script>
+</body>
+</html>
