@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style-type: none;
+            height: 30px;
+            line-height: 30px;
+
+        }
+
+        body {
+            background-color: #333;
+        }
+
+        div {
+            width: 500px;
+            height: 30px;
+            border: 1px solid #fff;
+            margin: 100px auto;
+            position: relative;
+            cursor: pointer;
+        }
+
+        li {
+            width: 50px;
+            color: #fff;
+            float: left;
+            padding: 0 5px;
+        }
+
+        #cloud {
+            width: 60px;
+            height: 30px;
+            background-color: pink;
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+<div class="nav">
+    <span id="cloud"></span>
+    <ul id="navBar">
+        <li>我爱罗</li>
+        <li>卡卡西</li>
+        <li>自由也</li>
+        <li>大蛇丸</li>
+        <li>犬夜叉</li>
+        <li>海贼王</li>
+        <li>铁碎牙</li>
+    </ul>
+</div>
+
+
+<script>
+    function my$(id) {
+        return document.getElementById(id);
+    }
+
+    var cloud = my$("cloud");
+    var list = my$("navBar").children;
+    for (var i = 0; i < list.length; i++) {
+        list[i].onmouseover = mouseoverHandle;
+        list[i].onclick = clickHandle;
+        list[i].onmouseout = mouseoutHandle;
+    }
+
+    function mouseoverHandle() {
+        //移动到鼠标此次进入的li的位置
+        animate(cloud, this.offsetLeft)
+    }
+
+    //点击的时候，记录此次点击的位置
+    var place = 0;
+
+    function clickHandle() {
+        place = this.offsetLeft;
+
+    }
+
+    function mouseoutHandle() {
+        animate(cloud, place)
+    }
+
+
+    //缓动（变速）动画函数
+    function animate(element, target) {
+        //清理定时器
+        clearInterval(element.timeId);
+        element.timeId = setInterval(function () {
+            //获取元素的当前位置
+            var current = element.offsetLeft;
+            //移动的步数
+            var step = (target - current) / 10;
+            //正数向上取整，负数向下取整
+            step = step > 0 ? Math.ceil(step) : Math.floor(step);
+            current += step;
+            element.style.left = current + "px";
+            //如果到达目标，清理定时器
+            if (current === target) {
+                clearInterval(element.timeId);
+            }
+
+        }, 20);
+    }
+
+</script>
+</body>
+</html>
