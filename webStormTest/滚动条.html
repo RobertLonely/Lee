@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 120px;
+            height: 100px;
+            border: 1px solid red;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .content {
+            width: 100px;
+
+        }
+
+        .scroll {
+            width: 20px;
+            height: 100%;
+            background-color: pink;
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+
+        .bar {
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: red;
+            border-radius: 9px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="box" id="box">
+    <div class="content" id="content">
+        开始汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪
+        汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪结束
+    </div><!--文字内容-->
+    <div class="scroll" id="scroll">
+        <div class="bar" id="bar"></div><!--滚动条-->
+    </div><!--装滚动条的层-->
+</div>
+
+<script>
+    function my$(id) {
+        return document.getElementById(id);
+    }
+
+    //最外面的div
+    var box = my$("box");
+    //内容div
+    var content = my$("content");
+    //装滚动条的div
+    var scroll = my$("scroll");
+    //滚动条div
+    var bar = my$("bar");
+    //设置滚动条的高
+    //  box盒子的高/content盒子的高=bar盒子的高/scroll盒子的高
+    var barH = box.offsetHeight * scroll.offsetHeight / content.offsetHeight;
+    bar.style.height = barH + "px";
+
+    //移动滚动条
+    bar.onmousedown = function (e) {
+        var spaceY = e.clientY - bar.offsetTop;
+        //移动事件
+        document.onmousemove = function (e) {
+            var y = e.clientY - spaceY;
+            //最小移动距离
+            y = y < 0 ? 0 : y;
+            //最大移动距离
+            y = y > scroll.offsetHeight - barH ? scroll.offsetHeight - barH : y;
+            bar.style.top = y + "px";
+            //设置鼠标移动的时候，文字不被选中
+            window.getSelection ? window.getSelection().removeAllRanges()
+                : document.selection.empty();
+            //比例：滚动条的移动距离/内容的移动距离=滚动条最大的移动距离/内容最大的移动距离
+            var moveY = y * (content.offsetHeight - box.offsetHeight) /
+                (scroll.offsetHeight - barH);
+            content.style.marginTop = -moveY + "px";
+        };
+    };
+    //当鼠标抬起的时候，停止移动事件
+    document.onmouseup = function () {
+        document.onmousemove = null;
+    }
+
+</script>
+</body>
+</html>
