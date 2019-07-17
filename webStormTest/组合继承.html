@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>组合继承：原型继承+借用构造函数继承</title>
+</head>
+<body>
+<script>
+    function Person(age) {
+        this.age = age;
+    }
+
+    Person.prototype.say = function () {
+        console.log("123");
+    };
+
+    function Student(age, name) {
+        Person.call(this, age);//借用构造函数
+        this.name = name;
+    }
+
+    Student.prototype = new Person();//原型继承
+    Student.prototype.play = function () {
+        console.log("玩");
+    };
+    var pre1 = new Student(10, "小明");
+    console.log(pre1.name, pre1.age);
+    pre1.say();
+    pre1.play();
+    var pre2 = new Student(20, "小红");
+    console.log(pre2.name, pre2.age);
+    pre2.say();
+    pre2.play();
+</script>
+</body>
+</html>
