@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>闭包案例点赞应用</title>
+</head>
+<body>
+<input type="button" value="赞（0）"/>
+<input type="button" value="赞（0）"/>
+<input type="button" value="赞（0）"/>
+<input type="button" value="赞（0）"/>
+<script>
+    function my$(tagName) {
+        return document.getElementsByTagName(tagName);
+    }
+
+    function getValue() {
+        var i = 1;
+        return function () {
+            this.value = "赞（" + (i++) + "）";
+        };
+    }
+
+    var obj = my$("input");
+    for (var i = 0; i < obj.length; i++) {
+        obj[i].onclick = getValue();
+    }
+
+</script>
+</body>
+</html>
