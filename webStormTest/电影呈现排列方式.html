@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>电影呈现排列方式</title>
+</head>
+<body>
+<script>
+    //三部电影，电影有名字，大小，上映时间
+    function File(name, size, time) {
+        this.name = name;//电影名字
+        this.size = size;//电影大小
+        this.time = time;//上映时间
+    }
+
+    var f1 = new File("Aimi", "400M", "1995-1-2");
+    var f2 = new File("Tom", "200M", "2019-1-2");
+    var f3 = new File("Lee", "300M", "1990-1-2");
+    var arr = [f1, f2, f3];
+
+    function fn(attr) {
+        //函数做返回值使用
+        return function getSort(obj1, obj2) {
+            if (obj1[attr] < obj2[attr]) {
+                return -1;
+            } else if (obj1[attr] === obj2[attr]) {
+                return 0
+            } else {
+                return 1;
+            }
+        }
+    }
+
+    var f = fn(prompt("请输入排列方式（name/size/time）"));
+    //函数做参数使用
+    arr.sort(f);
+    for (var i = 0; i < arr.length; i++) {
+        console.log(arr[i].name + "---" + arr[i].size + "---" + arr[i].time);
+    }
+
+</script>
+</body>
+</html>
