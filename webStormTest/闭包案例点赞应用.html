@@ -10,7 +10,7 @@
 <input type="button" value="赞（0）"/>
 <input type="button" value="赞（0）"/>
 <script>
-    function my$(tagName) {
+    function getTag$(tagName) {
         return document.getElementsByTagName(tagName);
     }
 
@@ -21,7 +21,7 @@
         };
     }
 
-    var obj = my$("input");
+    var obj = getTag$("input");
     for (var i = 0; i < obj.length; i++) {
         obj[i].onclick = getValue();
     }
