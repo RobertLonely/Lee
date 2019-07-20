@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>突出显示案例</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        body {
+            background: #000;
+        }
+
+        .wrap {
+            margin: 100px auto 0;
+            width: 630px;
+            height: 394px;
+            padding: 10px 0 0 10px;
+            background: #000;
+            overflow: hidden;
+            border: 1px solid #fff;
+        }
+
+        .wrap li {
+            float: left;
+            margin: 0 10px 10px 0;
+
+        }
+
+        .wrap img {
+            display: block;
+            border: 0;
+        }
+    </style>
+
+    <script src="jquery-1.12.2.js"></script>
+    <script>
+        $(function () {
+            $(".wrap>ul>li").mouseenter(function () {
+                //siblings(selector),查找兄弟节点，不包括自己本身
+                $(this).css("opacity", "1").siblings("li").css("opacity", ".3");
+            });
+            $(".wrap").mouseleave(function () {
+                //find(selector),相当于$(“ul li”),后代选择器
+                $(this).find("li").css("opacity", "1");
+            });
+        });
+    </script>
+
+</head>
+<body>
+<div class="wrap">
+    <ul>
+        <li><a href="#"><img src="img/01.jpg" alt=""/></a></li>
+        <li><a href="#"><img src="img/02.jpg" alt=""/></a></li>
+        <li><a href="#"><img src="img/03.jpg" alt=""/></a></li>
+        <li><a href="#"><img src="img/04.jpg" alt=""/></a></li>
+        <li><a href="#"><img src="img/05.jpg" alt=""/></a></li>
+        <li><a href="#"><img src="img/06.jpg" alt=""/></a></li>
+    </ul>
+</div>
+</body>
+</html>
