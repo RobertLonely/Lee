@@ -1,5 +1,5 @@
 /*!
- * jQuery JavaScript Library v1.12.2
+ * jQuery JavaScript Library v1.12.4
  * http://jquery.com/
  *
  * Includes Sizzle.js
@@ -9,7 +9,7 @@
  * Released under the MIT license
  * http://jquery.org/license
  *
- * Date: 2016-03-17T17:44Z
+ * Date: 2016-05-20T17:17Z
  */
 
 (function (global, factory) {
@@ -64,7 +64,7 @@
 
 
     var
-        version = "1.12.2",
+        version = "1.12.4",
 
         // Define a local copy of jQuery
         jQuery = function (selector, context) {
@@ -6680,6 +6680,7 @@
             if (reliableHiddenOffsetsVal) {
                 div.style.display = "";
                 div.innerHTML = "<table><tr><td></td><td>t</td></tr></table>";
+                div.childNodes[0].style.borderCollapse = "separate";
                 contents = div.getElementsByTagName("td");
                 contents[0].style.cssText = "margin:0;border:0;padding:0;display:none";
                 reliableHiddenOffsetsVal = contents[0].offsetHeight === 0;
@@ -7001,19 +7002,6 @@
             styles = getStyles(elem),
             isBorderBox = support.boxSizing &&
                 jQuery.css(elem, "boxSizing", false, styles) === "border-box";
-
-        // Support: IE11 only
-        // In IE 11 fullscreen elements inside of an iframe have
-        // 100x too small dimensions (gh-1764).
-        if (document.msFullscreenElement && window.top !== window) {
-
-            // Support: IE11 only
-            // Running getBoundingClientRect on a disconnected node
-            // in IE throws an error.
-            if (elem.getClientRects().length) {
-                val = Math.round(elem.getBoundingClientRect()[name] * 100);
-            }
-        }
 
         // some non-html elements return undefined for offsetWidth, so check for null/undefined
         // svg - https://bugzilla.mozilla.org/show_bug.cgi?id=649285
@@ -9997,6 +9985,11 @@
     }
 
     function filterHidden(elem) {
+
+        // Disconnected elements are considered hidden
+        if (!jQuery.contains(elem.ownerDocument || document, elem)) {
+            return true;
+        }
         while (elem && elem.nodeType === 1) {
             if (getDisplay(elem) === "none" || elem.type === "hidden") {
                 return true;
@@ -10361,13 +10354,6 @@
     }
 
 
-// Prevent auto-execution of scripts when no explicit dataType was provided (See gh-2432)
-    jQuery.ajaxPrefilter(function (s) {
-        if (s.crossDomain) {
-            s.contents.script = false;
-        }
-    });
-
 // Install script dataType
     jQuery.ajaxSetup({
         accepts: {
@@ -10644,7 +10630,7 @@
                 // If it fails, this function gets "jqXHR", "status", "error"
             }).always(callback && function (jqXHR, status) {
                 self.each(function () {
-                    callback.apply(self, response || [jqXHR.responseText, status, jqXHR]);
+                    callback.apply(this, response || [jqXHR.responseText, status, jqXHR]);
                 });
             });
         }
