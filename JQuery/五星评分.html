@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>五角星评分案例</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .comment {
+            font-size: 40px;
+            color: gold;
+        }
+
+        .comment li {
+            float: left;
+        }
+
+        ul {
+            list-style: none;
+        }
+    </style>
+</head>
+
+<body>
+<ul class="comment">
+    <li>☆</li>
+    <li>☆</li>
+    <li>☆</li>
+    <li>☆</li>
+    <li>☆</li>
+</ul>
+
+<script src="jquery-1.12.4.js"></script>
+<script>
+    $(function () {
+
+        var star_k = "☆";
+        var star_s = "★";
+
+        //为li注册鼠标进入事件
+        $(".comment li").mouseenter(function () {
+            //end()回到prevAll()的上一个状态
+            $(this).text(star_s).prevAll().text(star_s).end().nextAll().text(star_k);
+        });
+
+        //为ul注册鼠标离开事件
+        $("ul").mouseleave(function () {
+            //当鼠标离开时，所有li变空心
+            $(this).children().text(star_k);
+            //找到current,让current和current前面的变实心，
+            $(".current").text(star_s).prevAll().text(star_s)
+
+        });
+
+        //为li注册鼠标点击事件
+        $("li").click(function () {
+            $(this).addClass("current").siblings().removeClass("current");
+        });
+
+
+    });
+</script>
+
+
+</body>
+</html>
