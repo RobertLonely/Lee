@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="text" value="洋酒" id="txt">
+<input type="button" value="搜索" id="btn">
+
+
+<script src="jquery-1.12.4.js"></script>
+<script>
+    $(function () {
+
+        $("#txt").focus(function () {
+            //如果是默认值，清空内容
+            if ($(this).val() === "洋酒") {
+                $(this).val("");
+            }
+        });
+        $("#txt").blur(function () {
+            if ($(this).val() === "") {
+                $(this).val("洋酒");
+            }
+        });
+    });
+</script>
+</body>
+</html>
