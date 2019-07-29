@@ -1,13 +1,16 @@
 <?php
 
-// 获取文件中记录的数据，并展示到表格中（动态生成表格的HTML标签）
-$contents = file_get_contents('storage.json');
-// $contents => JSON 格式的字符串
-// 把 JSON 格式的字符串转换为对象的过程叫做反序列化
+// PHP 的价值：
+// 通过执行某些PHP代码获取到指定的数据，填充到HTML的指定位置
 
-// json_decode 默认反序列化时 将 JSON 中的对象转换为 PHP 中 stdClass 类型的对象
-$data = json_decode($contents, true);
-// $data => []
+$json = file_get_contents('data.json');
+
+$data = json_decode($json, true);
+
+if (!$data) {
+  // JSON 格式不正确
+  exit('数据文件异常');
+}
 
 ?>
 <!DOCTYPE html>
@@ -37,11 +40,15 @@ $data = json_decode($contents, true);
       <tbody class="text-center">
         <?php foreach ($data as $item): ?>
         <tr>
-          <td><?php echo $item['title'] ?></td>
-          <td><?php echo $item['artist'] ?></td>
-          <td><img src="<?php echo $item['images'][0] ?>" alt=""></td>
-          <td><audio src="<?php echo $item['source'] ?>" controls></audio></td>
-          <td><button class="btn btn-danger btn-sm">删除</button></td>
+          <td class="align-middle"><?php echo $item['title']; ?></td>
+          <td class="align-middle"><?php echo $item['artist']; ?></td>
+          <td class="align-middle">
+            <?php foreach ($item['images'] as $src): ?>
+            <img src="<?php echo $src; ?>" alt="">
+            <?php endforeach ?>
+          </td>
+          <td class="align-middle"><audio src="<?php echo $item['source']; ?>" controls></audio></td>
+          <td class="align-middle"><a class="btn btn-danger btn-sm" href="delete.php?id=<?php echo $item['id']; ?>">删除</a></td>
         </tr>
         <?php endforeach ?>
       </tbody>
