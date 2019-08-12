@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>绘制折线图</title>
+</head>
+<body>
+<canvas width="600" height="400" style="border: 1px solid #ccc"></canvas>
+<script>
+    var canvas = document.querySelector('canvas');
+    var ctx = canvas.getContext('2d');
+    //绘制网格==============================================================
+    //网格尺寸
+    var gridSize = 10;
+    //获取画布高度
+    var width = ctx.canvas.width;
+    //获取画布宽度
+    var height = ctx.canvas.height;
+    //x轴的条数
+    var xTotal = Math.floor(height / gridSize);
+    //循环遍历生成横轴
+    for (var i = 0; i <= xTotal; i++) {
+        ctx.beginPath();
+        ctx.moveTo(0, i * gridSize - 0.5);
+        ctx.lineTo(width, i * gridSize - 0.5);
+        ctx.strokeStyle = '#ccc';
+        ctx.stroke();
+    }
+    //y轴的条数
+    var yTotal = Math.floor(width / gridSize);
+    //循环遍历生成纵轴
+    for (var i = 0; i <= yTotal; i++) {
+        ctx.beginPath();
+        ctx.moveTo(i * gridSize, 0);
+        ctx.lineTo(i * gridSize, height);
+        ctx.strokeStyle = '#ccc';
+        ctx.stroke();
+    }
+    //绘制坐标系=============================================================
+    //坐标系离两边的间隙
+    var space = 20;
+    //坐标轴上箭头大小
+    var arrow = 10;
+    //确定原点坐标
+    var x0 = space;
+    var y0 = height - space - 0.5;
+    //绘制x轴
+    ctx.beginPath();
+    ctx.moveTo(x0, y0);
+    ctx.lineTo(width - space, y0);
+    ctx.strokeStyle = "black";
+    ctx.stroke();
+    //绘制x轴上箭头
+    ctx.moveTo(width - space, y0);
+    ctx.lineTo(width - space - arrow, y0 - arrow / 2);
+    ctx.lineTo(width - space - arrow, y0 + arrow / 2);
+    ctx.lineTo(width - space, y0);
+    ctx.fill();
+    //绘制y轴
+    ctx.beginPath();
+    ctx.moveTo(x0-0.5, y0);
+    ctx.lineTo(x0-0.5, space);
+    ctx.strokeStyle = "black";
+    ctx.stroke();
+    //绘制y轴上箭头
+    ctx.moveTo(x0, space);
+    ctx.lineTo(x0 - arrow / 2, space + arrow);
+    ctx.lineTo(x0 + arrow / 2, space + arrow);
+    ctx.lineTo(x0, space);
+    ctx.fill();
+    //绘制点===============================================================
+    var coor1 = {x: 323, y: 180};
+    var coor2 = {x: 223, y: 223};
+    var coor3 = {x: 123, y: 323};
+    var coor4 = {x: 423, y: 83};
+    //点的大小
+    var coorsize = 10;
+
+    function setCoor(coor) {
+        ctx.beginPath();
+        ctx.moveTo(coor.x - coorsize / 2, coor.y - coorsize / 2);
+        ctx.lineTo(coor.x + coorsize / 2, coor.y - coorsize / 2);
+        ctx.lineTo(coor.x + coorsize / 2, coor.y + coorsize / 2);
+        ctx.lineTo(coor.x - coorsize / 2, coor.y + coorsize / 2);
+        ctx.closePath();
+        ctx.fill();
+    }
+    setCoor(coor1);
+    setCoor(coor2);
+    setCoor(coor3);
+    setCoor(coor4);
+
+    //连接点
+    ctx.moveTo(coor3.x,coor3.y);
+    ctx.lineTo(coor2.x,coor2.y);
+    ctx.lineTo(coor1.x,coor1.y);
+    ctx.lineTo(coor4.x,coor4.y);
+    ctx.strokeStyle = "black";
+    ctx.stroke();
+
+
+</script>
+</body>
+</html>
