@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>绘制四分之一扇形</title>
+</head>
+<body>
+<canvas width="600" height="400" style="border: 1px solid #ccc"></canvas>
+<script>
+    var canvas = document.querySelector('canvas');
+    var ctx = canvas.getContext('2d');
+    var x0=ctx.canvas.width/2;
+    var y0=ctx.canvas.height/2;
+    //从原点开始绘制
+    ctx.moveTo(x0,y0);
+    //false表示顺时针方向绘制
+    ctx.arc(x0,y0,120,0,Math.PI/2);
+    ctx.closePath();
+    ctx.stroke();
+
+</script>
+</body>
+</html>
