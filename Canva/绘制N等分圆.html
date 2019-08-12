@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>绘制N等分随机颜色的圆</title>
+</head>
+<body>
+<canvas width="600" height="400" style="border: 1px solid #ccc"></canvas>
+<script>
+    var canvas = document.querySelector('canvas');
+    var ctx = canvas.getContext('2d');
+    //获取原点坐标
+    var x0=ctx.canvas.width/2;
+    var y0=ctx.canvas.height/2;
+    //划分的等分
+    var num=8;
+    //每等分的圆弧长度
+    var angle=Math.PI*2/num;
+    //获取随机颜色
+    function getRandomColor(){
+        var r=(Math.random()*256);
+        var g=(Math.random()*256);
+        var b=(Math.random()*256);
+        return 'rgb('+r+','+g+','+b+')';
+    }
+
+
+    for (var i = 0; i < num; i++) {
+        ctx.beginPath();
+        var startAngle=i*angle;
+        var endAngle=(i+1)*angle;
+        ctx.moveTo(x0,y0);
+        ctx.arc(x0,y0,120,startAngle,endAngle);
+        ctx.fillStyle=getRandomColor();
+        ctx.fill();
+    }
+    // ctx.stroke();
+
+</script>
+</body>
+</html>
