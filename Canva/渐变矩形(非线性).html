@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>利用矩形方法绘制渐变矩形</title>
+</head>
+<body>
+<canvas width="600" height="400" style="border: 1px solid #ccc"></canvas>
+<script>
+    var canvas = document.querySelector('canvas');
+    var ctx = canvas.getContext('2d');
+    //创建渐变方案
+    var linearGradient=ctx.createLinearGradient(100,100,300,100);
+    //添加渐变颜色
+    linearGradient.addColorStop(0,"pink");
+    linearGradient.addColorStop(1,"hotpink");
+    //设置矩形填充方案
+    ctx.fillStyle=linearGradient;
+    //创建矩形
+    ctx.fillRect(100,100,200,100);
+
+</script>
+</body>
+</html>
