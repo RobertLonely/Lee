@@ -43,6 +43,7 @@
         //path,表示监听哪个路由链接地址；
         //component,表示如果路由是前面匹配到的path,则展示component属性对应的组件
         // 注意:component的属性值，必须是一个组件的模板对象，不能是组件的引用名
+        {path:'/',redirect:'/login'},//打开页面时就重定向到登录页面
         {path:'/login',component:login},
         {path:'/register',component:register}
       ],
