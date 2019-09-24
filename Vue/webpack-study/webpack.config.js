@@ -37,11 +37,12 @@ module.exports = {
       //处理图片规则
       {
         test: /\.(jpg|png|gif|jpeg)$/,
-        // use: "url-loader?limit=24968&name=[hash:8]-[name].[ext]"
         use: "url-loader?limit=7360&name=[hash:8].[name].[ext]"
       },
       //处理字体文件的规则
-      { test: /\.(ttf|eot|svg|woff|woff2)$/, use: "url-loader" }
+      { test: /\.(ttf|eot|svg|woff|woff2)$/, use: "url-loader" },
+      // 配置 Babel 来转换高级的ES6语法
+      { test: /\.js$/, use: "babel-loader", exclude: "/node_modules/" }
     ]
   }
 };
