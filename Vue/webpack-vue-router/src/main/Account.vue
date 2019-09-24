@@ -1,6 +1,9 @@
 <template>
   <div>
     <h3>这是{{msg}}组件</h3>
+    <router-link to="/account/login">登录</router-link>
+    <router-link to="/account/register">注册</router-link>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -13,5 +16,10 @@ export default {
 };
 </script>
 
-<style>
+<style lang="less" scoped>
+body {
+  div {
+    text-decoration: underline;
+  }
+}
 </style>

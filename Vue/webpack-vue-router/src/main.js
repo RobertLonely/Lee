@@ -15,11 +15,23 @@ Vue.use(VueRouter);
 import account from "./main/Account.vue";
 import goodsList from "./main/GoodsList.vue";
 
+// 导入Account的两个子组件
+import login from "./subCom/login.vue";
+import register from "./subCom/register.vue";
+
 //TODO4:创建路由对象
 var router = new VueRouter({
   routes: [
     { path: "/", redirect: "/account" },
-    { path: "/account", component: account },
+    {
+      path: "/account",
+      component: account,
+      //嵌套子路由
+      children: [
+        { path: "/account/login", component: login },
+        { path: "/account/register", component: register }
+      ]
+    },
     { path: "/goodsList", component: goodsList }
   ]
 });

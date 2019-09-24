@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3>这是{{msg}}组件</h3>
+    <h2>这是{{msg}}组件</h2>
     <router-link to="/account">账户</router-link>
     <router-link to="/goodsList">商品列表</router-link>
     <router-view></router-view>

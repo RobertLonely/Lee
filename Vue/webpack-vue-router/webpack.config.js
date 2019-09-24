@@ -5,7 +5,7 @@ var path = require("path");
 var htmlWebpackPlugin = require("html-webpack-plugin");
 
 //导入VueLoaderPlugin
-var VueLoaderPlugin = require('vue-loader/lib/plugin');
+var VueLoaderPlugin = require("vue-loader/lib/plugin");
 
 // 导出一个配置对象
 module.exports = {
@@ -28,12 +28,14 @@ module.exports = {
     rules: [
       //处理css文件规则
       { test: /\.css$/, use: ["style-loader", "css-loader"] },
+      //处理css文件规则
+      { test: /\.less$/, use: ["style-loader", "css-loader", "less-loader"] },
       // 配置 Babel 来转换高级的ES6语法
       { test: /\.js$/, use: "babel-loader", exclude: "/node_modules/" },
       //处理解析转换.vue文件的规则
       { test: /\.vue$/, use: "vue-loader" }
     ]
-  },
+  }
   // resolve:{
   //   alias:{
   //     'vue$':'vue/dist/vue.js'
