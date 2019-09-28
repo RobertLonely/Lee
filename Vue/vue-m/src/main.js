@@ -13,17 +13,30 @@ Vue.use(VueRouter);
 import VueResource from "vue-resource";
 //安装 vue-resource
 Vue.use(VueResource);
+// 设置请求的根路径
+Vue.http.options.root = "http://www.liulongbin.top:3005/";
 
-// 按需导入 Mint-UI 中的组件  
-import { Header, Swipe, SwipeItem } from "mint-ui";
+// 导入格式化时间的插件
+import moment from "moment";
+//定义全局过滤器
+Vue.filter("dateF", function(dateStr, pattern = "YYYY-MM-DD HH:mm:ss") {
+  return moment(dateStr).format(pattern);
+});
+
+// 按需导入 Mint-UI 中的组件
+import { Header, Swipe, SwipeItem, Button } from "mint-ui";
 Vue.component(Header.name, Header);
 Vue.component(Swipe.name, Swipe);
 Vue.component(SwipeItem.name, SwipeItem);
+Vue.component(Button.name, Button);
 
 //导入 MUI 的样式
 import "../lib/mui/css/mui.css";
 // 导入扩展图标样式
 import "../lib/mui/css/icons-extra.css";
+
+//导入bootstrap样式
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css"
 
 //导入 App 根组件
 import App from "./App.vue";

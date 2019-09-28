@@ -5,6 +5,8 @@ import Home from "./components/tabbar/Home.vue";
 import Member from "./components/tabbar/Member.vue";
 import Shopcart from "./components/tabbar/Shopcart.vue";
 import Search from "./components/tabbar/Search.vue";
+import NewsList from "./components/news/NewsList.vue";
+import NewInfo from "./components/news/NewInfo.vue";
 
 //创建路由对象
 var router = new VueRouter({
@@ -14,10 +16,12 @@ var router = new VueRouter({
     { path: "/Home", component: Home },
     { path: "/Member", component: Member },
     { path: "/Shopcart", component: Shopcart },
-    { path: "/Search", component: Search }
+    { path: "/Search", component: Search },
+    { path: "/Home/NewsList", component: NewsList },
+    { path: "/Home/NewsList/:id", component: NewInfo }
   ],
   // 覆盖默认的路由高亮的类，默认的类叫做 router-link-active
-  linkActiveClass:'mui-active'
+  linkActiveClass: "mui-active"
 });
 
 // 把路由对象暴露出去

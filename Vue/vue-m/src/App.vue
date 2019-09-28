@@ -44,7 +44,7 @@ export default {
 
 <style>
 .app-container {
-  padding-top: 40px;
+  padding: 40px 0 50px;
   /* 在动画开始前，开始动画紧挨着屏幕右边，导致出现滚动条 */
   overflow-x: hidden;
 }
