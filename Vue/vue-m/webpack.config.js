@@ -28,11 +28,16 @@ module.exports = {
     rules: [
       //处理css文件规则
       { test: /\.css$/, use: ["style-loader", "css-loader"] },
+      //处理less文件规则
+      { test: /\.less$/, use: ["style-loader", "css-loader", "less-loader"] },
       // 配置 Babel 来转换高级的ES6语法
       { test: /\.js$/, use: "babel-loader", exclude: "/node_modules/" },
       //处理解析转换.vue文件的规则
       { test: /\.vue$/, use: "vue-loader" },
-      { test: /\.(ttf|eot|svg|woff|woff2)$/, use: "url-loader" }
+      //处理字体图标的规则
+      { test: /\.(ttf|eot|svg|woff|woff2)$/, use: "url-loader" },
+      //处理图片的规则
+      { test: /\.(jpg|jpeg|svg|gif|png)$/, use: "url-loader" }
     ]
   }
 };
