@@ -15,6 +15,13 @@ import VueResource from "vue-resource";
 Vue.use(VueResource);
 // 设置请求的根路径
 Vue.http.options.root = "http://www.liulongbin.top:3005/";
+// 全局设置 post 时候表单数据格式组织形式   application/x-www-form-urlencoded
+Vue.http.options.emulateJSON = true;
+
+//导入vue-preview
+import VuePreview from "vue-preview";
+//安装vue-preview
+Vue.use(VuePreview);
 
 // 导入格式化时间的插件
 import moment from "moment";
@@ -24,11 +31,17 @@ Vue.filter("dateF", function(dateStr, pattern = "YYYY-MM-DD HH:mm:ss") {
 });
 
 // 按需导入 Mint-UI 中的组件
-import { Header, Swipe, SwipeItem, Button } from "mint-ui";
-Vue.component(Header.name, Header);
-Vue.component(Swipe.name, Swipe);
-Vue.component(SwipeItem.name, SwipeItem);
-Vue.component(Button.name, Button);
+// import { Header, Swipe, SwipeItem, Button, Lazyload } from "mint-ui";
+// Vue.component(Header.name, Header);
+// Vue.component(Swipe.name, Swipe);
+// Vue.component(SwipeItem.name, SwipeItem);
+// Vue.component(Button.name, Button);
+// Vue.component(Lazyload.name, Lazyload);
+
+//导入Mint-UI全部组件
+import MintUI from "mint-ui";
+import "mint-ui/lib/style.css";
+Vue.use(MintUI);
 
 //导入 MUI 的样式
 import "../lib/mui/css/mui.css";
@@ -36,7 +49,7 @@ import "../lib/mui/css/mui.css";
 import "../lib/mui/css/icons-extra.css";
 
 //导入bootstrap样式
-import "../node_modules/bootstrap/dist/css/bootstrap.min.css"
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 //导入 App 根组件
 import App from "./App.vue";

@@ -1,8 +1,8 @@
 <template>
   <div class="comments">
     <h3>发表评论:</h3>
-    <textarea rows="4" placeholder="请输入评论内容"></textarea>
-    <mt-button type="primary" size="large">提交内容</mt-button>
+    <textarea rows="4" placeholder="请输入评论内容" v-model="msg"></textarea>
+    <mt-button type="primary" size="large" @click="postComment">提交内容</mt-button>
 
     <div class="panel panel-info" v-for="(item,i) in comments" :key="i">
       <div class="panel-heading">
@@ -22,9 +22,10 @@ import { Toast } from "mint-ui";
 export default {
   data() {
     return {
-      pageIndex: 1,// 默认展示第一页数据
-      id: this.$route.params.id,// 所有的评论数据
-      comments: []
+      pageIndex: 1, // 默认展示第一页数据
+      id: this.$route.params.id, // 所有的评论数据
+      comments: [],
+      msg: ""
     };
   },
   created() {
@@ -38,7 +39,7 @@ export default {
           if (res.body.status === 0) {
             // 每当获取新评论数据的时候，以老数据拼接上新数据
             this.comments = this.comments.concat(res.body.message);
-            console.log(this.comments);
+            // console.log(this.comments);
           } else {
             Toast("加载评论失败...");
           }
@@ -48,6 +49,23 @@ export default {
       // 加载更多
       this.pageIndex++;
       this.getComment();
+    },
+    postComment() {
+      if (this.msg.trim().length === 0) {
+        Toast("评论不能为空");
+      } else {
+        var userObj = {
+          user_name: "Lee",
+          add_time: Date.now(),
+          content: this.msg.trim()
+        };
+      }
+      this.$http.post("api/postcomment/" + this.id, userObj).then(res => {
+        if (res.body.status === 0) {
+          this.comments.unshift(userObj);
+          this.msg = "";
+        }
+      });
     }
   }
 };
