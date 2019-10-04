@@ -1,12 +1,7 @@
 <template>
   <div>
     <!-- 轮播图区域 -->
-    <mt-swipe :auto="2000">
-      <!-- 在组件中，使用v-for循环的话，一定要使用 key -->
-      <mt-swipe-item v-for="(item,i) in carousel" :key="i">
-        <img :src="item.img" alt />
-      </mt-swipe-item>
-    </mt-swipe>
+    <carousel :carousel="carousel" :isfull="true"></carousel>
     <!-- 九宫格 到 6宫格 的改造工程 -->
     <ul class="mui-table-view mui-grid-view mui-grid-9">
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
@@ -51,6 +46,7 @@
 
 <script>
 import { Toast } from "mint-ui";
+import carousel from "../subComponents/carousel.vue";
 export default {
   data() {
     return {
@@ -62,35 +58,26 @@ export default {
     this.getInfo();
   },
   methods: {
+    // 获取轮播图数据的方法
     getInfo() {
-      this.$http
-        // 获取轮播图数据的方法
-        .get("http://www.liulongbin.top:3005/api/getlunbo")
-        .then(res => {
-          if (res.body.status === 0) {
-            // 成功了
-            this.carousel = res.body.message;
-          } else {
-            // 失败的
-            Toast("加载失败...");
-          }
-        });
+      this.$http.get("api/getlunbo").then(res => {
+        if (res.body.status === 0) {
+          // 成功了
+          this.carousel = res.body.message;
+        } else {
+          // 失败的
+          Toast("加载失败...");
+        }
+      });
     }
+  },
+  components: {
+    carousel
   }
 };
 </script>
 
 <style lang="less" scoped>
-.mint-swipe {
-  height: 200px;
-  .mint-swipe-item {
-    img {
-      width: 100%;
-      height: 100%;
-    }
-  }
-}
-
 .mui-grid-view.mui-grid-9 {
   border: none;
   background-color: #fff;
