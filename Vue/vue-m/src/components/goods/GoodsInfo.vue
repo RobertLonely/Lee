@@ -112,12 +112,14 @@ export default {
     addShopCart() {
       // 添加到购物车
       this.ballFlag = !this.ballFlag;
+      // 拼接出一个，要保存到 store 中 car 数组里的 商品信息对象
       var goodsInfo = {
         id: parseInt(this.id),
         count: this.count,
         price: this.info.sell_price,
         isSelect: true
       };
+      // 调用 store 中的 mutations 来将商品加入购物车
       this.$store.commit("addToCar", goodsInfo);
     },
     beforeEnter(el) {

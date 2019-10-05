@@ -22,6 +22,7 @@ export default {
   },
   methods: {
     getChangeCount() {
+      // 每当数量值改变，则立即把最新的数量同步到购物车的store中，覆盖之前的数量值
       this.$store.commit("upDataCount", {
         id: this.goodsId,
         count: parseInt(this.$refs.numbox.value)

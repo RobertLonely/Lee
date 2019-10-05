@@ -51,6 +51,7 @@ export default {
   },
   methods: {
     goBack() {
+      // 点击后退
       this.$router.go(-1);
     }
   },
@@ -89,6 +90,7 @@ export default {
   transition: all 0.5s ease;
 }
 
+/* 该类名解决 tabbar 点击无法切换的问题 */
 .mui-bar-tab .mui-tab-item1.mui-active {
   color: #007aff;
 }

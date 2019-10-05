@@ -29,6 +29,7 @@ var car = JSON.parse(localStorage.getItem("car") || "[]");
 //创建一个store实例
 var store = new Vuex.Store({
   state: {
+    //将购物车中商品的数据，用一个数组存储起来,在car数组中存储一些商品的对象
     car: car
   },
   mutations: {
@@ -43,6 +44,7 @@ var store = new Vuex.Store({
         }
       });
 
+      // 如果循环完毕，得到的flag还是false，则把商品数据直接push到购物车中
       if (!flag) {
         state.car.push(goodsInfo);
       }
@@ -50,23 +52,25 @@ var store = new Vuex.Store({
       localStorage.setItem("car", JSON.stringify(state.car));
     },
     upDataCount(state, goodsInfo) {
+      // 修改购物车中商品的数量值
       state.car.some(item => {
         if (item.id === goodsInfo.id) {
           item.count = goodsInfo.count;
           return true;
         }
       });
-      // 更新car之后，把car数组，存储到本地的localStorage 中
+      // 当修改完商品的数量，把最新的购物车数据，保存到本地存储中
       localStorage.setItem("car", JSON.stringify(state.car));
     },
     remove(state, id) {
+      // 根据Id，从store中的购物车中删除对应的那条商品数据
       state.car.some((item, i) => {
         if (item.id === id) {
           state.car.splice(i, 1);
           return true;
         }
       });
-      // 更新car之后，把car数组，存储到本地的localStorage 中
+      // 将删除完毕后的，最新的购物车数据，同步到本地存储中
       localStorage.setItem("car", JSON.stringify(state.car));
     },
     changeSel(state, goodsInfo) {
@@ -76,7 +80,7 @@ var store = new Vuex.Store({
           return true;
         }
       });
-      // 更新car之后，把car数组，存储到本地的localStorage 中
+      // 把最新的所有购物车商品的状态保存到 store 中去
       localStorage.setItem("car", JSON.stringify(state.car));
     }
   },
@@ -105,10 +109,11 @@ var store = new Vuex.Store({
       });
       return selectObj;
     },
+    //获得总件数和总价
     getCountAndPrice(state) {
       var CountAndPrice = {
-        count: 0,
-        price: 0
+        count: 0,  // 勾选的数量
+        price: 0   // 勾选的总价
       };
       state.car.forEach(item => {
         if (item.isSelect) {

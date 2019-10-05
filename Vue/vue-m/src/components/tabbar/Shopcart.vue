@@ -1,5 +1,6 @@
 <template>
   <div class="shopCar">
+    <!-- 商品列表项区域 -->
     <div class="mui-card" v-for="(item,i) in list" :key="item.id">
       <div class="mui-card-content">
         <div class="mui-card-content-inner">
@@ -23,6 +24,7 @@
       </div>
     </div>
 
+    <!-- 结算区域 -->
     <div class="mui-card all">
       <div class="mui-card-content">
         <div class="mui-card-content-inner">
@@ -47,7 +49,7 @@ import numBox from "../subComponents/carNumBox.vue";
 export default {
   data() {
     return {
-      list: []
+      list: [] // 购物车中所有商品的数据
     };
   },
   created() {
@@ -57,25 +59,26 @@ export default {
     //获取购物车中所有商品列表并加载
     getGoodsList() {
       var ids = [];
-
+      // 获取到 store 中所有的商品的Id，然后拼接出一个用逗号分隔的字符串
       this.$store.state.car.forEach(item => ids.unshift(item.id));
       // 如果 购物车中没有商品，则直接返回，不需要请求数据接口，否则会报错
       if (ids.length === 0) {
         return;
       }
-
+      // 获取购物车商品列表
       this.$http.get("api/goods/getshopcarlist/" + ids.join(",")).then(res => {
         if (res.body.status === 0) {
           this.list = res.body.message;
         }
       });
     },
-    //删除商品
+    //点击删除，把商品从store中根据传递的Id删除，同时把当前组件中的goodsList 中，对应要删除的那个商品，使用index来删除
     removeShop(id, i) {
       this.list.splice(i, 1);
       this.$store.commit("remove", id);
     },
     getChangeSel(id, val) {
+      //每当点击开关，把最新的快关状态，同步到store中
       this.$store.commit("changeSel", { id, isSelect: val });
     }
   },
