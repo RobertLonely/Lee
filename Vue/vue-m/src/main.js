@@ -1,9 +1,6 @@
 //导入vue组件
 import Vue from "vue";
 
-//导入完整的vue组件
-// import Vue from '../node_modules/vue/dist/vue'
-
 //导入路由的包
 import VueRouter from "vue-router";
 //安装路由
@@ -23,20 +20,113 @@ import VuePreview from "vue-preview";
 //安装vue-preview
 Vue.use(VuePreview);
 
+//导入vuex
+import Vuex from "vuex";
+//安装vuex
+Vue.use(Vuex);
+//先从本地存储中，把购物车的数据读出来，放到 store 中
+var car = JSON.parse(localStorage.getItem("car") || "[]");
+//创建一个store实例
+var store = new Vuex.Store({
+  state: {
+    car: car
+  },
+  mutations: {
+    addToCar(state, goodsInfo) {
+      //默认购物车中，没有此类商品
+      var flag = false;
+      state.car.some(item => {
+        if (item.id === goodsInfo.id) {
+          item.count += goodsInfo.count;
+          flag = !flag;
+          return true;
+        }
+      });
+
+      if (!flag) {
+        state.car.push(goodsInfo);
+      }
+      // 更新car之后，把car数组，存储到本地的localStorage 中
+      localStorage.setItem("car", JSON.stringify(state.car));
+    },
+    upDataCount(state, goodsInfo) {
+      state.car.some(item => {
+        if (item.id === goodsInfo.id) {
+          item.count = goodsInfo.count;
+          return true;
+        }
+      });
+      // 更新car之后，把car数组，存储到本地的localStorage 中
+      localStorage.setItem("car", JSON.stringify(state.car));
+    },
+    remove(state, id) {
+      state.car.some((item, i) => {
+        if (item.id === id) {
+          state.car.splice(i, 1);
+          return true;
+        }
+      });
+      // 更新car之后，把car数组，存储到本地的localStorage 中
+      localStorage.setItem("car", JSON.stringify(state.car));
+    },
+    changeSel(state, goodsInfo) {
+      state.car.some(item => {
+        if (item.id === goodsInfo.id) {
+          item.isSelect = goodsInfo.isSelect;
+          return true;
+        }
+      });
+      // 更新car之后，把car数组，存储到本地的localStorage 中
+      localStorage.setItem("car", JSON.stringify(state.car));
+    }
+  },
+  getters: {
+    //获得所有商品的总和
+    getAllCount(state) {
+      var c = 0;
+      state.car.forEach(item => {
+        c += item.count;
+      });
+      return c;
+    },
+    //获得数字框出初始化值
+    getInitCount(state) {
+      var obj = {};
+      state.car.forEach(item => {
+        obj[item.id] = item.count;
+      });
+      return obj;
+    },
+    //获得选择框的选中状态
+    getSelect(state) {
+      var selectObj = {};
+      state.car.forEach(item => {
+        selectObj[item.id] = item.isSelect;
+      });
+      return selectObj;
+    },
+    getCountAndPrice(state) {
+      var CountAndPrice = {
+        count: 0,
+        price: 0
+      };
+      state.car.forEach(item => {
+        if (item.isSelect) {
+          CountAndPrice.count += item.count;
+          CountAndPrice.price += item.price * item.count;
+        }
+      });
+      return CountAndPrice;
+    }
+  }
+});
+
 // 导入格式化时间的插件
 import moment from "moment";
 //定义全局过滤器
 Vue.filter("dateF", function(dateStr, pattern = "YYYY-MM-DD HH:mm:ss") {
   return moment(dateStr).format(pattern);
 });
-
-// 按需导入 Mint-UI 中的组件
-// import { Header, Swipe, SwipeItem, Button, Lazyload } from "mint-ui";
-// Vue.component(Header.name, Header);
-// Vue.component(Swipe.name, Swipe);
-// Vue.component(SwipeItem.name, SwipeItem);
-// Vue.component(Button.name, Button);
-// Vue.component(Lazyload.name, Lazyload);
 
 //导入Mint-UI全部组件
 import MintUI from "mint-ui";
@@ -57,16 +147,13 @@ import App from "./App.vue";
 //导入自己的 router.js 路由模块
 import router from "./router.js";
 
-//创建组件模板
-// var App={
-//   template:'<h3>123</h3>'
-// }
-
 //创建一个vm实例，使用render函数渲染指定组件
 var vm = new Vue({
   el: "#app",
   //使用render函数渲染页面
   render: c => c(App),
   //挂载路由对象到 VM 实例上
-  router
+  router,
+  //挂载store到VM实例上
+  store
 });

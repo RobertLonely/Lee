@@ -5,7 +5,7 @@
       id="test"
       class="mui-input-numbox"
       type="number"
-      value="0"
+      value="1"
       @change="statistics"
       ref="numbox"
     />

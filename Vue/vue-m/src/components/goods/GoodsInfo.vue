@@ -110,8 +110,15 @@ export default {
       this.$router.push({ name: "comment", params: { id } });
     },
     addShopCart() {
-       // 添加到购物车
+      // 添加到购物车
       this.ballFlag = !this.ballFlag;
+      var goodsInfo = {
+        id: parseInt(this.id),
+        count: this.count,
+        price: this.info.sell_price,
+        isSelect: true
+      };
+      this.$store.commit("addToCar", goodsInfo);
     },
     beforeEnter(el) {
       el.style.transform = "translate(0,0)";
@@ -129,7 +136,6 @@ export default {
       var y = badgePosition.top - ballPosition.top;
       el.style.transform = `translate(${x}px,${y}px)`;
       el.style.transition = "all 0.5s cubic-bezier(.4,-0.3,1,.68)";
-
       done();
     },
     afterEnter(el) {
@@ -138,7 +144,6 @@ export default {
     sum(num) {
       // 当子组件把 选中的数量传递给父组件的时候，把选中的值保存到 data 上
       this.count = num;
-      console.log(this.count);
     }
   },
   components: {

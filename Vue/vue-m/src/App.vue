@@ -1,7 +1,12 @@
 <template>
   <div class="app-container">
     <!-- 顶部 Header 区域 -->
-    <mt-header fixed title="vue-m"></mt-header>
+    <mt-header fixed title="vue-m">
+      <!-- 返回按钮 -->
+      <span slot="left" @click="goBack" v-show="flag">
+        <mt-button icon="back">返回</mt-button>
+      </span>
+    </mt-header>
     <!-- 中间的 路由 router-view 区域 -->
     <transition>
       <router-view></router-view>
@@ -20,7 +25,7 @@
 
       <router-link class="mui-tab-item1" to="/Shopcart">
         <span class="mui-icon mui-icon-extra mui-icon-extra-cart">
-          <span class="mui-badge" id="badge">9</span>
+          <span class="mui-badge" id="badge">{{$store.getters.getAllCount}}</span>
         </span>
         <span class="mui-tab-label">购物车</span>
       </router-link>
@@ -37,7 +42,26 @@
 export default {
   // 注意：组件中的 data 必须是 function
   data() {
-    return {};
+    return {
+      flag: false
+    };
+  },
+  created() {
+    this.flag = this.$route.path === "/Home" ? false : true;
+  },
+  methods: {
+    goBack() {
+      this.$router.go(-1);
+    }
+  },
+  watch: {
+    "$route.path": function(newVal) {
+      if (newVal === "/Home") {
+        this.flag = false;
+      } else {
+        this.flag = true;
+      }
+    }
   }
 };
 </script>
