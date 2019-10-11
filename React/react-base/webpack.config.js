@@ -14,11 +14,27 @@ module.exports = {
   plugins: [htmlPlugin],
   module: {
     rules: [
-      { test: /\.js|jsx$/, use: "babel-loader", exclude: /node_modules/ }
+      { test: /\.js|jsx$/, use: "babel-loader", exclude: /node_modules/ },
+      { test: /\.css$/, use: ["style-loader","css-loader"]},
+      {
+        test: /\.scss$/,
+        use: [
+          { loader: "style-loader" },
+          {
+            loader: "css-loader",
+            options: {
+              modules: {// css-loader3.x以上“localIdentName”已移入模块密钥
+                localIdentName: "[path][name]-[local]-[hash:5]"
+              }
+            }
+          },
+          { loader: "sass-loader" },
+        ]
+      }
     ]
   },
-  resolve:{
-    extensions:['.js','.jsx','.json'],
-    alias:{"@":path.join(__dirname,'./src')}
+  resolve: {
+    extensions: [".js", ".jsx", ".json"],
+    alias: { "@": path.join(__dirname, "./src") }
   }
 };
