@@ -1,6 +1,9 @@
 //导入vue组件
 import Vue from "vue";
 
+//导入自定义my-mint.css文件
+import './assets/css/my-mint.css' 
+
 //导入路由的包
 import VueRouter from "vue-router";
 //安装路由

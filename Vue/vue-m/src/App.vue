@@ -1,12 +1,13 @@
 <template>
   <div class="app-container">
     <!-- 顶部 Header 区域 -->
-    <mt-header fixed title="vue-m">
+    <mt-header fixed title="移动商城">
       <!-- 返回按钮 -->
       <span slot="left" @click="goBack" v-show="flag">
         <mt-button icon="back">返回</mt-button>
       </span>
     </mt-header>
+
     <!-- 中间的 路由 router-view 区域 -->
     <transition>
       <router-view></router-view>
@@ -32,7 +33,7 @@
 
       <router-link class="mui-tab-item1" to="/Search">
         <span class="mui-icon mui-icon-search"></span>
-        <span class="mui-tab-label">设置</span>
+        <span class="mui-tab-label">搜索</span>
       </router-link>
     </nav>
   </div>
