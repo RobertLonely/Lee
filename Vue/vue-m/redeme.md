@@ -6,4 +6,4 @@
 
 2. 底部页签使用 mui 的`tabbar`组件;
 
-   ![home](C:\Users\26291\Desktop\readme\home.png)
+   ![home](.\assets\home.png)
