@@ -6,4 +6,6 @@
 
 2. 底部页签使用 mui 的`tabbar`组件;
 
+实例页面如下：
+
 ![home](./assets/home.png)
