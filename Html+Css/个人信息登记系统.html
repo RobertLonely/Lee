@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>个人信息登入系统</title>
+</head>
+
+<body>
+<h1 style="text-align:center">个人信息登入系统</h1>
+<from action="index.php" method="post">
+&nbsp;&nbsp;&nbsp;&nbsp;用户名：<input type="text" name="usename" maxlength="8">(最大8位）<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;密码：<input type="password" name="usepu" maxlength="8">(最大8位）<br/>
+重输密码：<input type="password" name="usepu" maxlength="8">(最大8位）<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;邮箱：<input type="text" name="usename" maxlength="10"><br/>
+&nbsp;&nbsp;QQ号码：<input type="text" name="usepu"><br/>
+真实姓名：<input type="text" name="usename" maxlength="8">(最大8位汉字）<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;性别：<input type="radio" name="men" value="男" checked>男<input type="radio" name="men" value="女">女<br/>
+出生日期：<select>
+        <option value="1997" selected>1997
+        <option value="1998" >1998
+        <option value="1999" >1999
+        </select>年
+        <select>
+        <option value="11">11
+        <option value="12" selected >12
+        <option value="1" >1
+        </select>月
+        <select>
+        <option value="26" selected>26
+        <option value="27" >27
+        <option value="28" >28
+        </select>日<br/>
+联系地址：<input type="text" name="add"><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;学历：<select>
+        <option value="University" selected>大学
+        <option value="High school" >高中
+        <option value="middle school" >初中
+        <option value="school" >小学
+        </select><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;邮编：<input type="text" name="Zip code" maxlength="6"><br/> 
+兴趣爱好:<input type="checkbox" name="Subjects" value="计算机" id="Subjects0">计算机
+        <input type="checkbox" name="Subjects" value="音乐" id="Subjects1">音乐
+        <input type="checkbox" name="Subjects" value="旅游" id="Subjects2">旅游
+        <input type="checkbox" name="Subjects" value="体育" id="Subjects3">体育
+        <input type="checkbox" name="Subjects" value="购物" id="Subjects4">购物
+        <input type="checkbox" name="Subjects" value="其他" id="Subjects5">其他<br/>
+个人简历：<textarea name="个人简历” cols"50" rows="4"></textarea><br/>     
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="提交个人信息"><input type="reset" value="重写个人信息">
+</form>
+</body>
+</html>

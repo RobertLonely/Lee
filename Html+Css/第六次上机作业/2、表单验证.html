@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>表单验证</title>
+</head>
+
+<body>
+用户名：<input id="username" type="text" onblur="checkLogin()" />
+<div id="errorUsername" style="display:inline"></div>
+<br />
+密码：<input id="pass" type="password" onblur="checkPass()"/>
+<div id="errorPass" style="display:inline"></div>
+
+
+<script>
+ function checkLogin(){
+	 var myDiv=document.getElementById("errorUsername");
+	 myDiv.innerHTML="";
+	 var strName=document.getElementById("username").value;
+	 
+	 if(strName.length==0)
+	 {
+		 myDiv.innerHTML="<font color='red'>用户名不能为空</font>";
+		 return;
+	 }
+ 	}
+   function checkPass(){
+	  var myDiv=document.getElementById("errorPass");
+	  myDiv.innerHTML="";
+	  var strPass=document.getElementById("pass").value;
+	  if(strPass.length<6){
+		  myDiv.innerHTML="<font color='red'>密码长度不能少于6位</font>";
+		  return ;
+	  }
+   }
+ 
+</script>
+</body>
+</html>

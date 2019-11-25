@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script>
+function changeColor(color)
+{
+	var table= document.getElementById("colorTable");
+	table.bgColor=color;
+}
+</script>
+</head>
+
+<body>
+<table   border="2px  solid " id="colorBlock"><tr>
+<td onclick="changeColor('red')">请点击(红色）</td>
+<td onclick="changeColor('blue')">请点击(蓝色）</td>
+<td onclick="changeColor('black')">请点击(黑色）</td>
+<td onclick="changeColor('yellow')">请点击(黄色）</td>
+<td onclick="changeColor('orange')">请点击(橘色）</td>
+<td onclick="changeColor('green')">请点击(绿色）</td>
+<td onclick="changeColor('purple')">请点击(粉色）</td>
+</tr>
+</table>
+<table id="colorTable"><tr><td></td></tr></table>
+</body>
+</html>

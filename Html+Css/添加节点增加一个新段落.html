@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script>
+function f()
+{	
+   var node=document.createElement("p"); /*创建一个p节点*/
+   window.confirm("是否新增一个段落");/*如果放在函数体最后会先执行函数在弹出确认框，放在函数体最前确认框出现一次后不在出现*/
+   var textNode=document.createTextNode("第三个段落");/*创建一个文本节点内容*/
+   node.appendChild(textNode);/*将文本节点内容，添加到p节点里面*/
+   var bodyNode=document.body;
+   bodyNode.appendChild(node);
+}
+</script>
+</head>
+
+<body>
+<p>第一个段落</p>
+<p>第二个段落</p>
+<input type="button" onClick="f()" value="新增加一个段落"/>
+</body>
+</html>

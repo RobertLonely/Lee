@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+#box{
+	margin:0 auto;
+	width:102px;
+	height:106px;
+	position:relative;}
+#left{
+	position:absolute;
+	top:40px;
+	left:0px;
+	background:#999;
+	font-size:30px;}
+#right{
+	position: absolute;
+	top: 39px;
+	right: 0px;
+	background: #999;
+	font-size: 30px;
+}
+</style>
+<script>
+var index=1;
+var t;
+function right(){
+	window.clearInterval(t);
+	index=index%9;
+	index=index+1;
+	var imgs=document.getElementById("imgs");
+	imgs.src="../../Pictures/Camera Roll/0"+index+".jpg";
+	autoplay()}
+function left(){
+	window.clearInterval(t);
+	if(index==1)
+	index=9;
+	else
+	index=index-1;
+	var imgs=document.getElementById("imgs");
+	imgs.src="../../Pictures/Camera Roll/0"+index+".jpg";
+	autoplay()}
+function autoplay(){
+	t=window.setInterval("right()",2000);}
+</script>
+</head>
+
+<body onLoad="autoplay()">
+<div id="box">
+<img src="../../Pictures/Camera Roll/01.jpg" id="imgs"/>
+<div id="left" onClick="left()">&lt;</div>
+<div id="right" onClick="right()">&gt;</div>
+</div>
+</body>
+</html>

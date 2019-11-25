@@ -1,0 +1,18 @@
+@charset "utf-8";
+#right2 #d{
+	width:290px;
+	height:200px;
+	padding-top:5px;
+	background-image:url(../../../../Pictures/Camera%20Roll/blockbg.gif);
+	background-repeat:no-repeat;
+	background-size:290px 200px;}
+#right2 #d0{
+	margin:15px 0 0 20px;}
+#right2 li{
+	list-style:none;}
+#right2 a:link{
+	text-decoration:none;
+	color:black;}
+#right2 a:hover{
+	text-decoration:underline;}/* CSS Document */
+

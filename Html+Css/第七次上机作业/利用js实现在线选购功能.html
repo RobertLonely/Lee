@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script>
+function createOrder(){
+	var num=0 ;//用来保存用户选择了几本书
+	var textbooks=document.forms[0].textbook;//获得页面中textbook元素的数组
+	var txtTitles="" ; //用来保存用户选择的图书的名称
+	var textIsbns="" ; //用来保存用户选择的图书的ISBN
+	for(i=0;i<textbooks.length;++i){ 
+		if(textbooks[i].checked){//如果对应图书的checkbox框被选中
+			txtTitles=txtTitles+"《"+textbooks[i].nextSibling.nodeValue+"》\r\n";//input作为创建各种表单输入控件的标签，无论是生成button、checkbox、radio...等或其他表单控件，IE都会自动在后面创建一个1字节位的空白。IE跳过在节点之间产生的空格文档节点（如：换行字符）。因此，在ie中用nextSibling便可读取到的下一个节点元素。一般先通过nextSibling.nodeName来获知其标签名，或者通过nextSibling.nodeType来获知其标签类型，然后，如果该nextSibling.nodeName = #text，则通过nextSibling.nodeValue来获知其文本值；否则，可以通过nextSibling.innerHTML等其他常用标签元素属性来获取其属性。
+			textIsbns=textIsbns+textbooks[i].value+",";
+			num++;}//value:string类型属性的值.用于input/form/textarea元素,innerHTML:string类型,元素的HTML内容.用于div/p/span/td/ul等.value是元素的属性值，而innerText和innerHTML是元素开始和结束标签之间的值。
+			}
+			//将选择的教材信息输入到文本框，如果没有选中，清空文本框
+			if(num>0){
+				alert("您订购的教材有"+num+"本，分别是：\r\n"+textIsbns+txtTitles);}
+				else{
+					alert("您尚未选择任何教材！");}
+}
+</script>
+</head>
+
+<body>
+<div>
+<h2>教材选购单</h2>
+<h3>您想订那几本教材？</h3>
+<form>
+  <table>
+<tr><td><input type="checkbox" name="textbook" value="9787113086756">计算机网络技术及应用<br/></td></tr>
+<tr><td><input type="checkbox" name="textbook" value="9787113023456">网页设计与制作<br/></td></tr>
+</table>
+<input type="button" onclick="createOrder()" value="发送教材选购单">
+</form>
+</div>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>中间自适应宽度三栏页面布局</title>
+<link herf="style.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+#header{
+	height:60px;
+	border-bottom:1px solid #ccc;}
+#nav{
+	height:20px;
+	border-bottom:1px solid #ccc;}
+#left{
+	width:200px;
+	height:400px;
+	float:left;
+	border-right:1px solid #ccc;}
+#content{
+	height:400px;
+	float:left;}
+#right{
+	width:200px;
+	height:400px;
+	float:right;
+	border-left:1px solid #ccc;}
+#footer{
+	height:50px;
+	clear:both;
+	border-top:1px solid #ccc;}
+</style>
+</head>
+
+<body>
+<div id="header">头部区块</div>
+<div id="nav">水平导航区块</div>
+<div id="left">左边固定宽度栏</div>
+<div id="content">中间自适应宽度</div>
+<div id="right">右边固定宽度栏</div>
+<div id="footer">页脚版权区块</div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script>
+function up(){
+	var x=document.getElementById("td1");
+x.innerHTML="1";
+x.style.background="black";
+x.style.color="white";
+}
+function down(){
+	var x=document.getElementById("td1");
+	x.innerHTML="2";
+	x.style.background="red";
+	x.style.color="black";
+	}
+</script>
+</head>
+
+
+<body >
+<table height="100px"; width="300px";>
+<tr><td id="td1" onmouseup="up()" onMouseDown="down()" align="center">把鼠标移到上面</td></tr>
+
+
+</table>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script>
+var pi=3.14; //这里声明一个全局变量pi，供函数计算面积使用
+function compute(radius){
+	var area=0;
+	area=pi*radius*radius;
+	return area;}
+function show(){
+	var radius=document.getElementById('radius').value;
+//document.getElementById("radius")；是根据id获取到HTML元素对象。
+//使用.value；是获取对象的值。
+//该js为赋值语句，将radius元素的value 赋值给radius。
+//HTML表单元素都有一个value值。<input type='' value='' name='' id=''> HTML 表单元素基本参数 。
+	var area=compute(radius);
+	document.getElementById('area').value=area;
+//表示调用document的getElementById方法,返回ID为area的对象,然后将该对象的value属性设置为area
+	return}
+</script>
+</head>
+
+<body>
+<from>
+<label for="radius">输入半径：</label>
+<input type="text" name="radius" id="radius">
+<input type="button" value="计算!" onClick="show()"><br>
+<label>圆的面积：</label>
+<input type="text" name="area" id="area" readonly><!--readonly表单中的只读属性与name，type等同级别--> 
+
+</from>
+</body>
+</html>

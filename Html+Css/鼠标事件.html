@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+/*img和intro的父元素*/
+#screen {
+position: relative;
+width:498px;
+height:272px;
+overflow: hidden;
+}
+/*接着就是包裹的两个div,图片和文字*/
+#img {
+width: 100%;
+height: 100%;
+overflow: hidden;
+border-radius: 7px;
+position: relative;
+}
+#intro {
+	position: absolute;
+	width:100%;
+	color:red;
+	font-size:36px;
+	text-indent:1.5em;
+	bottom:0px;
+	z-index: 1;/*就是可以将文字锁定在你图片的上方*/
+	overflow:inherit ;/*inherit继承*/
+}
+</style>
+<script>
+function mouseOver(){
+	document.mouse.src="file:///C|/Users/26291/Pictures/Camera Roll/cool boy.jpg"}//document.控件名(.控件属性)
+function mouseOut(){
+	document.mouse.src="file:///C|/Users/26291/Pictures/Camera Roll/hey girl.jpg"}
+function mousePressd(){
+	if (event.button==2){/*event事件*/ //Event 对象代表事件的状态，比如事件在其中发生的元素、键盘按键的状态、鼠标的位置、鼠标按钮的状态。事件通常与函数结合使用，函数不会在事件发生前被执行！
+		alert("你真点击了鼠标右键，没用！")}
+		else{
+			alert("你点击了鼠标左键，哈哈哈！")}
+}
+</script>
+</head>
+
+<body onmousedown="mousePressd()"><!--onmousedown当鼠标按钮按下时-->
+<div id="screen">
+    <div id="intro">点我有惊喜</div>
+    <div id="img"><img border="0" src="../../Pictures/Camera Roll/hey girl.jpg" name="mouse" onMouseOver="mouseOver()" onMouseOut="mouseOut()"/></div>
+  </div>
+</div>
+</span>
+</body>
+</html>

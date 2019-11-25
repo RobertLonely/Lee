@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+#clock{   border:0px solid red;
+    font-size:60px;
+	width:300px;
+	height:70px;
+	color:red;
+	margin: 0 auto;
+	border: 2px solid #ccc;
+	text-align:center;}
+#an{
+	text-align: center;
+	}
+</style>
+<script>
+var t
+function showTime(){
+	var time=new Date();
+	var hours=time.getHours();
+	var minutes=time.getMinutes();
+	var seconds=time.getSeconds();
+	if(minutes<10)
+	minutes="0"+minutes;
+	if(seconds<10)
+	seconds="0"+seconds;
+	var showTime=hours+":"+minutes+":"+seconds;
+	var clock=document.getElementById("clock");
+	clock.innerHTML=showTime;}
+function start(){
+	t=window.setInterval("showTime()",1000);}
+function stop(){
+	window.clearInterval(t);}
+</script>
+</head>
+
+<body onLoad="showTime()">
+<h1 align="center">数字时钟</h1>
+<div id="clock"></div>
+<p>
+<form  id="an">
+<input type="button" value="开始" onClick="start()"/>
+<input type="button" value="停止" onClick="stop()"/>
+</form>
+</p>
+</body>
+</html>

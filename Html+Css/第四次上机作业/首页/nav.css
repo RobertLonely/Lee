@@ -1,0 +1,30 @@
+@charset "utf-8";
+#nav #d{
+	width:1180px;
+	height:36px;
+	border-radius:10px;
+	background-color:#666;
+}
+#nav #d0{
+	padding-left:20px;
+	padding-right:20px;
+	padding-top:8px;
+}
+#nav ul{
+	margin:0;
+	padding:0;
+}
+#nav li{
+	float:left;
+	list-style:none;
+}
+#nav a:link{
+	text-decoration:none;
+	color:white;
+	font-size:20px;
+}
+#nav a:hover{
+	color:red;
+}
+
+

@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script>
+ function login(){
+	 var userName=document.getElementById("userName").value;
+	 var pwd=document.getElementById("pwd").value;
+	 var matchResult=true;//matchResult匹配结果
+	 if(userName==""||pwd==""){
+		 alert("请确认用户名和登入密码输入正确！");
+		 matchResult=false;
+	 }
+	 return matchResult;
+}
+</script>
+</head>
+
+<body>
+<form name="loginForm" action="" onSubmit="return login()" method="post">
+<table>
+<tr><td class="table-title" colspan="2">用户登录</td></tr>
+<tr><td>用户名：</td><td><input id="userName" type="text" class="input"></td></tr>
+<tr><td>密&nbsp;&nbsp;&nbsp;&nbsp;码：</td><td><input id="pwd" name="pwd" type="password" class="input"></td></tr>
+<tr><td></td><td><input type="submit" value="登入"><input type="reset" value="取消"></td></tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>表单验证</title>
+<script>
+ function checkLogin(){
+	 var myDiv=document.getElementById("errorUsername").innerHTML="";
+	// myDiv.innerHTML="";见下
+<!--innerHTML在JS是双向功能：获取对象的内容或 向对象插入内容；如:<div id="aa">这是内容</div>   ，我们可以通过  document.getElementById('aa').innerHTML 来获取id为aa的对象的内嵌内容；也可以对某对象插入内容，如  document.getElementById('abc').innerHTML='这是被插入的内容';   这样就能向id为abc的对象插入内容-->
+	 var strName=document.getElementById("username").value;
+	 if(strName.length==0)
+	 {
+		 document.getElementById("errorUsername").innerHTML="<font color='red'>用户名不能为空</font>";//原来是myDiv.innerHTML=......
+		 <!--<font>标签意思是:规定文本的字体、字体尺寸、字体颜色。<font color="red" size="5">这是一段测试文本</font>//定义文本的字体是5号，颜色为红色-->
+		 return;
+	 }
+ 	}
+   function checkPass(){
+	  var myDiv=document.getElementById("errorPass");
+	  myDiv.innerHTML="";
+	  var strPass=document.getElementById("pass").value;
+	  if(strPass.length<6){
+		  myDiv.innerHTML="<font color='red'>密码长度不能少于6位</font>";
+		  return ;
+	  }
+   }
+ 
+</script>
+</head>
+
+<body>
+<form>
+<table>
+<tr><td>
+用户名：<input id="username" type="text" onblur="checkLogin()" />
+<div id="errorUsername" style="display:inline"></div>
+</td></tr>
+<tr><td>
+密&nbsp;&nbsp;&nbsp;&nbsp;码：<input id="pass" type="password" onblur="checkPass()"/>
+<div id="errorPass" style="display:inline"></div>
+</td></tr>
+</table>
+</form>
+</body>
+</html>

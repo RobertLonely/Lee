@@ -1,0 +1,15 @@
+@charset "utf-8";
+#right0 #d{
+	width:290px;
+	height:200px;
+	padding-top:5px;
+	background-image:url(../../../../Pictures/Camera%20Roll/blockbg.gif);
+	background-repeat:no-repeat;
+	background-size:290px 200px;
+	}
+#right0 #d0{
+	text-align:center;}
+#right0 a:hover{
+	text-decoration:none;
+	}/* CSS Document */
+

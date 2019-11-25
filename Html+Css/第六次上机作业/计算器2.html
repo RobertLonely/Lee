@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+	#num3{
+		text-indent: 4em;
+	}
+</style>
+<script>
+function add(){
+	var number1=parseFloat(document.getElementById("num1").value);
+//parseInt()：parseInt()函数可以解析一个字符串，并返回一个整数。它可接受两个参数，第一个参数是要解析的字符串，第二个参数是要解析的数字的基数，范围为2~36。如果省略该参数或其值为0，则以十进制来解析；如果该参数小于2或者大于36，则parseInt()将返回NaN。该方法可以将非数字字符（非首个字符）过滤掉，例如：parseInt("40d")，返回40，而parseInt("d40")则返回NaN。
+//parseFloat()：parseFloat())函数可以解析一个字符串，并返回一个浮点数。该函数在解析过程中遇到了正负号、数字、小数点或者科学计数法中的指数（e 或 E）以外的字符，则它会忽略该字符以及之后的所有字符，返回当前已经解析到的浮点数。同时参数字符串首尾的空白符会被忽略。
+//Number()：Number()函数把对象的值转换为数字。如果参数是Date对象，Number()返回1970年1月1日至今的毫秒数。如果对象的值无法转换为数字，那么Number()函数返回NaN。
+	var number2=parseFloat(document.getElementById("num2").value);
+	var result=document.getElementById("result");
+	result.value=(number1+number2).toString();
+}
+function sub(){
+	var number1=parseFloat(document.getElementById("num1").value);
+	var number2=parseFloat(document.getElementById("num2").value);
+	var result=document.getElementById("result");
+	result.value=(number1-number2).toString();
+}
+function mul(){
+	var number1=parseFloat(document.getElementById("num1").value);
+	var number2=parseFloat(document.getElementById("num2").value);
+	var result=document.getElementById("result");
+	result.value=(number1*number2).toString();
+}
+function div(){
+	var number1=parseFloat(document.getElementById("num1").value);
+	var number2=parseFloat(document.getElementById("num2").value);
+	var result=document.getElementById("result");
+	result.value=(number1/number2).toString(); <!--.toString()实现转意：将所要显示的内容以字符串的形式显示出来。还可以更深层次的理解成当默认的toString()不能实现想要的功能时重写toString方法，以实现功能-->
+}
+</script>
+</head>
+
+<body>
+<form>
+<p>数字1：<input type="text" name="数字1：" id="num1"></p>
+<p>数字2：<input type="text" name="数字2：" id="num2"></p>
+  <p id="num3">
+  <input type="button" value="+" onClick="add()">&nbsp;
+  <input type="button" value="-" onClick="sub()">&nbsp;
+  <input type="button" value="*" onClick="mul()">&nbsp;
+  <input type="button" value="/" onClick="div()"></p>
+	<p>结果：<input type="text" name="结果：" id="result"></p>
+</form>
+</body>
+</html>

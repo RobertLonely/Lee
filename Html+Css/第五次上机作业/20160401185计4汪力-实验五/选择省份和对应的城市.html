@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script>
+function f()
+{
+	var array=new Array();
+	array[0]=["广州","佛山","珠海"];
+	array[1]=["南宁","桂林","柳州"];
+	array[2]=["成都","绵阳","泸州"];
+	var pre=document.forms[0].pro;
+	var city=document.forms[0].city;
+	var index=pre.selectedIndex-1;
+	city.options.length=0;
+	for(var i=0;i<array[index].length;i++){
+		var option=new Option(array[index][i],array[index][i]);
+		city.options.add(option);}
+}
+</script>
+</head>
+
+<body>
+<form>
+省份:<select name="pro" onChange="f()"> <!--省份(Provinces)-->
+<option>请选择</option>
+<option value="广东">广东</option> <!--option是单标记还可以写成"<option value="广东">广东"-->
+<option value="广西">广西</option><!--value用于设置当该选项被选中并提交后，浏览器传送给服务器的数据-->
+<option value="四川">四川</option>
+</select>
+城市：<select name="city">
+</select>
+</form>
+</body>
+</html>

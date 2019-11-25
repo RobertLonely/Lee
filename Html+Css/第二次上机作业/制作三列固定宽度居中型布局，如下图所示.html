@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>中间自适应宽度三栏页面布局</title>
+<link herf="style.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+#container
+{
+	margin:0 auto;
+	width:1000px;
+    }
+#header{
+	height:60px;
+	/*border-bottom:1px solid #ccc;*/
+	text-align:center;
+	margin-bottom:10px;
+	background-color:#0CF;}
+/*#nav{
+	height:20px;
+	border-bottom:1px solid #ccc;}*/
+#left{
+	width:290px;
+	height:400px;
+	float:left;
+	/*border-right:1px solid #ccc;*/
+	text-align:center;
+	background-color:#0FF;}
+#content{
+	height:400px;
+	width:400px;
+	float:left;
+	text-align:center;
+	margin-bottom:10px;
+	margin-left:10px;
+	background-color:#CFF;}
+#right{
+	width:290px;
+	height:400px;
+	float:right;
+	/*border-right:1px solid #ccc;*/
+	text-align:center;
+	background-color:#0FF;}
+#footer{
+	height:50px;
+	clear:both;
+	/*border-right:1px solid #ccc;*/
+	text-align:center;
+	background-color:#0CF;}
+</style>
+</head>
+
+<body>
+<div id="container">
+<div id="header">Header</div>
+<!--<div id="nav">水平导航区块</div>-->
+<div id="left">Sidebar</div>
+<div id="content">三列固定宽度居中型布局</div>
+<div id="right">Sidebar2</div>
+<div id="footer">Footer</div>
+</div>
+</body>
+</html>

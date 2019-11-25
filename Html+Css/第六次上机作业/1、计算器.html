@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>简单计算器</title>
+<script>
+
+function add(){
+	 var number1=parseFloat(document.getElementById("number1").value);
+	var number2=parseFloat(document.getElementById("number2").value);
+	var result=document.getElementById("result");
+	result.value=(number1+number2).toString();
+}
+function sub(){
+	 var number1=parseFloat(document.getElementById("number1").value);
+	var number2=parseFloat(document.getElementById("number2").value);
+	var result=document.getElementById("result");
+	result.value=(number1-number2).toString();
+}
+function mul(){
+	 var number1=parseFloat(document.getElementById("number1").value);
+	var number2=parseFloat(document.getElementById("number2").value);
+	var result=document.getElementById("result");
+	result.value=(number1*number2).toString();
+}
+function div(){
+	 var number1=parseFloat(document.getElementById("number1").value);
+	var number2=parseFloat(document.getElementById("number2").value);
+	var result=document.getElementById("result");
+	result.value=(number1/number2).toString();
+}
+</script>
+</head>
+
+<body>
+<table>
+<tr><td>数字1:</td><td><input type="text" id="number1"/></td></tr>
+<tr><td>数字2:</td><td><input type="text" id="number2"/></td></tr>
+<tr><td colspan="2" align="center">
+<input type="button" name="add" value="+" onclick="add()"/>
+<input type="button" name="sub" value="-" onclick="sub()"/>
+<input type="button" name="mul" value="*" onclick="mul()"/>
+<input type="button" name="div" value="/" onclick="div()"/>
+</td></tr>
+<tr><td>结果：</td><td><input type="text" id="result" /></td></tr>
+</table>
+</body>
+</html>
