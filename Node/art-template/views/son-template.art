@@ -1,9 +1,0 @@
-<!-- 标准语法 -->
-{{include'./common/header.art'}} 
-{{ message }}
-{{include'./common/footer.art'}}
-<!-- 原始语法 -->
-<% include('./common/header.art')%>
-<%= message%>
-<% include('./common/footer.art')%>
-

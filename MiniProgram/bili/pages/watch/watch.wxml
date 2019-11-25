@@ -1,4 +1,0 @@
-<view class="main">
-  <head></head>
-  <video src="{{path}}" autoplay loop></video>
-</view>
